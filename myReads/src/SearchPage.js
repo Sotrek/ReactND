@@ -8,7 +8,9 @@ class SearchPage extends Component {
 	state = {
 
 	}
-
+	handleChange(event) {
+		this.setState({value: event.target.value});
+	}
 	render(){
 		return(
 			<div className="search-books">

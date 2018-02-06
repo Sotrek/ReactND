@@ -1,5 +1,4 @@
 import React from 'react';
-import BookShelfChanger from './BookShelfChanger';
 import './App.css';
 
 const Book = (props) => {
@@ -9,7 +8,7 @@ const Book = (props) => {
         <ol className="books-grid">
           {books.length > 0 &&
             books.map(singleBook => {
-              const { id, imageLinks, title, authors } = singleBook;
+              const { id, imageLinks, shelf, title, authors } = singleBook;
               const thumbnail = imageLinks ? singleBook.imageLinks.thumbnail :`http://via.placeholder.com/193x128`
               return (
                 <li key={id}>
@@ -23,7 +22,15 @@ const Book = (props) => {
                         backgroundImage: `url(${thumbnail})`,
                         }}
                       />
-                      <BookShelfChanger/>
+                      <div className="book-shelf-changer">
+					      <select value={shelf} onChange={e => props.onShelfChange(e, singleBook)}>
+					        <option value="none" disabled>Move to...</option>
+					        <option value="currentlyReading">Currently Reading</option>
+					        <option value="wantToRead">Want to Read</option>
+					        <option value="read">Read</option>
+					        <option value="none">None</option>
+					      </select>
+				    </div>
                     </div>
                     <div className="book-title">{title}</div>
                     <div className="book-authors">

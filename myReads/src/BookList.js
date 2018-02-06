@@ -4,10 +4,6 @@ import Book from './Book.js';
 import { Link } from 'react-router-dom';
 
 class BookList extends Component {
-	state = {
-
-	}
-
 	render(){
 		const {books} = this.props;
 
@@ -27,6 +23,7 @@ class BookList extends Component {
 	                  {currentlyReading.length > 0 &&
 		                   <Book
 		                    books={currentlyReading}
+		                    onShelfChange={this.props._handleChange}
 		                   />
 	               	   }
 	                </div>
@@ -35,6 +32,7 @@ class BookList extends Component {
 	                  {wantToRead.length > 0 &&
 		                   <Book
 		                    books={wantToRead}
+		                    onShelfChange={this.props._handleChange}
 		                   />
 	               	   }
 	                </div>
@@ -43,6 +41,7 @@ class BookList extends Component {
 	                  {read.length > 0 &&
 		                   <Book
 		                    books={read}
+		                    onShelfChange={this.props._handleChange}
 		                   />
 	               	   }
 	                </div>
