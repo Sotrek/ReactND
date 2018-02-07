@@ -23,7 +23,7 @@ class BookList extends Component {
 	                  {currentlyReading.length > 0 &&
 		                   <Book
 		                    books={currentlyReading}
-		                    onShelfChange={this.props._handleChange}
+		                    ShelfChange={this.props.ShelfChange}
 		                   />
 	               	   }
 	                </div>
@@ -32,7 +32,7 @@ class BookList extends Component {
 	                  {wantToRead.length > 0 &&
 		                   <Book
 		                    books={wantToRead}
-		                    onShelfChange={this.props._handleChange}
+		                    ShelfChange={this.props.ShelfChange}
 		                   />
 	               	   }
 	                </div>
@@ -41,7 +41,7 @@ class BookList extends Component {
 	                  {read.length > 0 &&
 		                   <Book
 		                    books={read}
-		                    onShelfChange={this.props._handleChange}
+		                    ShelfChange={this.props.ShelfChange}
 		                   />
 	               	   }
 	                </div>

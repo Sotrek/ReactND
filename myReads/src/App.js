@@ -16,25 +16,34 @@ class BooksApp extends React.Component {
     });
   }
 
-  _handleChange(e) {
-    this.setState({shelf: e.target.value});
-  }
+  ShelfChange = (e, singleBook) => {
+    const books = this.state.books;
+    const shelf = e.target.value;
+    singleBook.shelf = e.target.value;
+    this.setState({ books })
+    BooksAPI.update(singleBook,shelf).then(() => {
+     this.setState(state => ({
+       books: state.books
+       .filter(x => x.id !== singleBook.id)
+       .concat([singleBook])
+     }))
+    })
+  };
 
-  render() {
+  
+
+  render(){
     return (
       <div className="app">
         <Route exact path="/" render={()=>(
           <BookList
             books={this.state.books}
-            onShelfChange={this._handleChange}
+            ShelfChange={this.ShelfChange}
           />
         )}/>
         <Route exact path="/search" render={()=>(
           <SearchPage />
         )}/>
-
-
-
       </div>
     )
   }
