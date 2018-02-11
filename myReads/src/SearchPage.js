@@ -5,13 +5,17 @@ import { Link } from 'react-router-dom';
 // import SortBy from 'sort-by'
 import * as BooksAPI from './BooksAPI'
 import Book from './Book';
-
+import PropTypes from 'prop-types';
 
 class SearchPage extends Component {
 
 	state = {
 		query: '',
 		queryResults:[]
+	}
+	PropTypes = {
+		query: PropTypes.string.isRequired,
+		ShelfChange: PropTypes.func.isRequired,
 	}
 
 	updateQuery = (query) => {
@@ -27,6 +31,7 @@ class SearchPage extends Component {
 		} else {
 			this.setState({queryResults: []})
 		}
+
 	}
 
 	render(){
