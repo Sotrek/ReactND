@@ -23,11 +23,16 @@ class SearchPage extends Component {
 		if (this.state.query) {
 			this.queryResults = BooksAPI.search(this.state.query).then((response) => {
 				let apiResults = [];
-				apiResults = response.map( (result) => {
-					return result;
-				})
+				console.log(response);
+				if (response === Array){
+					apiResults = response.map( (result) => {
+						return result
+					})
+				} else {
+					apiResults = response
+				}
 				this.setState({queryResults: apiResults});
-			});
+			})
 		} else {
 			this.setState({queryResults: []})
 		}
