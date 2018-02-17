@@ -20,8 +20,8 @@ class SearchPage extends Component {
 
 	updateQuery = (query) => {
 		this.setState({ query: query })
-		if (this.state.query) {
-			this.queryResults = BooksAPI.search(this.state.query).then((response) => {
+		if (query) {
+			this.queryResults = BooksAPI.search(query).then((response) => {
 				let apiResults = [];
 				console.log(response);
 				if (response === Array){
