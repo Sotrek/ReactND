@@ -32,7 +32,9 @@ class SearchPage extends Component {
 					apiResults = response
 				}
 				this.setState({queryResults: apiResults});
-			})
+			}).catch(() =>
+		          alert("Server error: Please refresh the page or visit later.")
+		       )
 		} else {
 			this.setState({queryResults: []})
 		}
