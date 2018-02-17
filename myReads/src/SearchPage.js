@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Link } from 'react-router-dom';
-// import EscapeRegExp from 'escape-string-regexp'
-// import SortBy from 'sort-by'
 import * as BooksAPI from './BooksAPI'
 import Book from './Book';
 import PropTypes from 'prop-types';
@@ -23,7 +21,7 @@ class SearchPage extends Component {
 		if (query) {
 			this.queryResults = BooksAPI.search(query).then((response) => {
 				let apiResults = [];
-				console.log(response);
+				// console.log(response);
 				if (response === Array){
 					apiResults = response.map( (result) => {
 						return result
