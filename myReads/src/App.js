@@ -60,7 +60,7 @@ class BooksApp extends React.Component {
   render(){
     return (
       <div className="app">
-        //using react-router-dom to create root path
+        {/* using react-router-dom to create root path */}
         <Route exact path="/" render={()=>(
           //rendering Booklist component
           <BookList
@@ -68,7 +68,7 @@ class BooksApp extends React.Component {
             ShelfChange={this.ShelfChange}
           />
         )}/>
-        //using react-router-dom to create search page
+        {/*using react-router-dom to create search page*/}
         <Route exact path="/search" render={()=>(
           //rendering SearchPage component
           <SearchPage

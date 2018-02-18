@@ -55,9 +55,9 @@ class SearchPage extends Component {
 		return(
 			<div className="search-books">
 				<div className="search-books-bar">
-				  //using react-router-dom to link back to root page
+				  {/* using react-router-dom to link back to root page */}
 				  <Link to="/" className="close-search">Close</Link>
-				  //Input fielf on change triggers the updateQuery event
+				  {/*Input fielf on change triggers the updateQuery event */}
 				  <div className="search-books-input-wrapper">
 				    <input type="text"
 				    	   placeholder="Search by title or author"
