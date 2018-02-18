@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './App.css';
 import { Link } from 'react-router-dom';
 import * as BooksAPI from './BooksAPI'
 import Book from './Book';
@@ -7,39 +6,39 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 
 class SearchPage extends Component {
-
+	//initialising the local state of the query and queryResults
 	state = {
 		query: '',
 		queryResults:[]
 	}
+	//component’s prop - books - may update
 	componentWillReceiveProps =({ books }) => {
+		//using lodash to deep-clone the queryResults in order to avoid the problem of shallow comparison
 	    const clonedResults = _.cloneDeep(this.state.queryResults)
+	    //using lodash to find the intersection by id between current queryResults-clonedResults-and the updated list of books
 	    const theObject=_.intersectionBy(books, clonedResults, "id")
+	    //using lodash to filter out the books from queryResults that have not been added to any shelve
 	    const theOthers=_.differenceBy(clonedResults, theObject, "id")
+	    //updating the state with the new objects and using the spread operator
 	    this.setState({ queryResults: [...theObject, ...theOthers] })
-	    console.log("receiveProps", theObject, theOthers)
-	}
 
-	PropTypes = {
-		query: PropTypes.string.isRequired,
-		ShelfChange: PropTypes.func.isRequired,
 	}
-
+	//updating the query based on the BooksAPI query
 	updateQuery = (query) => {
 		this.setState({ query: query })
+		// if query is truthy
 		if (query) {
+			//searching through BooksAPI for the query and then assigning the results
+			//with the help of lodash as above to return the apiResults
 			this.queryResults = BooksAPI.search(query).then((response) => {
 				let apiResults = [];
-				// console.log(response);
+				//if the response is an Array
 				if (Array.isArray(response)){
-					// apiResults = response.map( (result) => {
-					// 	return result
-					// })
 					const theObject=_.intersectionBy(this.props.books, response, "id")
 		            const theOthers=_.differenceBy(response, theObject, "id")
 		            apiResults=[...theObject, ...theOthers]
-		            console.log("QUERY UPDATE 1", theObject, theOthers)
 				}
+				//setting the updated state of the queryResults
 				this.setState({queryResults: apiResults});
 
 			}).catch(() =>
@@ -50,43 +49,35 @@ class SearchPage extends Component {
 		}
 
 	}
-
-
-
 	render(){
 
 
 		return(
 			<div className="search-books">
 				<div className="search-books-bar">
+				  //using react-router-dom to link back to root page
 				  <Link to="/" className="close-search">Close</Link>
+				  //Input fielf on change triggers the updateQuery event
 				  <div className="search-books-input-wrapper">
-				    {/*
-				      NOTES: The search from BooksAPI is limited to a particular set of search terms.
-				      You can find these search terms here:
-				      https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
-
-				      However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
-				      you don't find a specific author or title. Every search is limited by search terms.
-				    */
-
-
-					}
 				    <input type="text"
-				    		placeholder="Search by title or author"
-				    		value={this.state.query}
-				    		onChange={(event) => this.updateQuery(event.target.value)}/>
-
+				    	   placeholder="Search by title or author"
+				    	   value={this.state.query}
+				    	   onChange={(event) => this.updateQuery(event.target.value)}/>
 				  </div>
 				</div>
 				<div className="search-books-results">
 				  <ol className="books-grid">
+				  		{/* rendering the books that are returned from the local state of the queryResults */}
 				  		<Book books={this.state.queryResults}
-				  				ShelfChange={this.props.ShelfChange}/>
+				  			  ShelfChange={this.props.ShelfChange}/>
 				  </ol>
 				</div>
 			</div>
 		)
+	}
+	PropTypes = {
+		query: PropTypes.string.isRequired,
+		ShelfChange: PropTypes.func.isRequired,
 	}
 }
 
