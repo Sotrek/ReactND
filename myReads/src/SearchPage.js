@@ -17,7 +17,7 @@ class SearchPage extends Component {
 	    const theObject=_.intersectionBy(books, clonedResults, "id")
 	    const theOthers=_.differenceBy(clonedResults, theObject, "id")
 	    this.setState({ queryResults: [...theObject, ...theOthers] })
-	    console.log("receiveProps")
+	    console.log("receiveProps", theObject, theOthers)
 	}
 
 	PropTypes = {
@@ -31,22 +31,27 @@ class SearchPage extends Component {
 			this.queryResults = BooksAPI.search(query).then((response) => {
 				let apiResults = [];
 				// console.log(response);
-				if (response === Array){
-					apiResults = response.map( (result) => {
-						return result
-					})
-				} else {
-					apiResults = response
+				if (Array.isArray(response)){
+					// apiResults = response.map( (result) => {
+					// 	return result
+					// })
+					const theObject=_.intersectionBy(this.props.books, response, "id")
+		            const theOthers=_.differenceBy(response, theObject, "id")
+		            apiResults=[...theObject, ...theOthers]
+		            console.log("QUERY UPDATE 1", theObject, theOthers)
 				}
 				this.setState({queryResults: apiResults});
+
 			}).catch(() =>
 		          alert("Server error: Please refresh the page or visit later.")
-		       )
+		    )
 		} else {
 			this.setState({queryResults: []})
 		}
 
 	}
+
+
 
 	render(){
 

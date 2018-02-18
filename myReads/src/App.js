@@ -19,7 +19,7 @@ class BooksApp extends React.Component {
   }
 
   ShelfChange = (e, singleBook) => {
-    const { id, value} = e.target;
+    const { value } = e.target;
 
     BooksAPI.update(singleBook, value).then((e) => {
         console.log(e)
