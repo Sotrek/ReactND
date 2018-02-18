@@ -39,7 +39,7 @@ class BooksApp extends React.Component {
           ));
 
           if (hasTarget) {
-            books.filter(book => book.id === id)[0].shelf = value;
+            books.filter(book => book.id === singleBook.id)[0].shelf = value;
             console.log('hasTarget')
           } else {
             console.log('hasNOTarget')
