@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import * as BooksAPI from './BooksAPI'
 import Book from './Book';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 
 class SearchPage extends Component {
 
@@ -11,6 +12,14 @@ class SearchPage extends Component {
 		query: '',
 		queryResults:[]
 	}
+	componentWillReceiveProps =({ books }) => {
+	    const clonedResults = _.cloneDeep(this.state.queryResults)
+	    const theObject=_.intersectionBy(books, clonedResults, "id")
+	    const theOthers=_.differenceBy(clonedResults, theObject, "id")
+	    this.setState({ queryResults: [...theObject, ...theOthers] })
+	    console.log("receiveProps")
+	}
+
 	PropTypes = {
 		query: PropTypes.string.isRequired,
 		ShelfChange: PropTypes.func.isRequired,

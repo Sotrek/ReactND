@@ -31,7 +31,7 @@ In order to create the production code, by compiling and transpiling the js,
 run the following comming
 
 ```
-npm build
+npm run build
 ```
 
 ## Built With

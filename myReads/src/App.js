@@ -19,19 +19,37 @@ class BooksApp extends React.Component {
   }
 
   ShelfChange = (e, singleBook) => {
-    const shelf = e.target.value;
-    singleBook.shelf = e.target.value;
+    const { id, value} = e.target;
 
-    BooksAPI.update(singleBook, shelf).then((e) => {
+    BooksAPI.update(singleBook, value).then((e) => {
         console.log(e)
      }).catch(() =>
           alert("Server error: Please refresh the page or visit later.")
        )
-     this.setState(state => ({
-       books: state.books
-       .filter(x => x.id !== singleBook.id)
-       .concat([singleBook])
-      }))
+     // this.setState(state => ({
+     //   books: state.books
+     //   .filter(x => x.id !== singleBook.id)
+     //   .concat([singleBook])
+     //  }))
+      this.setState( prevState => {
+          const { books } = prevState;
+
+          const hasTarget = books.find(book => (
+            book.id === singleBook.id
+          ));
+
+          if (hasTarget) {
+            books.filter(book => book.id === id)[0].shelf = value;
+            console.log('hasTarget')
+          } else {
+            console.log('hasNOTarget')
+            return {
+              books:[
+                ...books, Object.assign({}, singleBook, {shelf: value})
+              ]
+            }
+          }
+      })
   };
 
 
