@@ -1,11 +1,14 @@
-import React, { Component } from 'react';
-import logo from '../logo.svg';
-import '../App.css';
-import { Route } from 'react-router-dom';
-import AllCategories from './AllCategories';
-import NewPost from './NewPost';
+import React, { Component } from 'react'
+import '../App.css'
+import { Route } from 'react-router-dom'
+import AllCategories from './AllCategories'
+import NewPost from './NewPost'
+
+
+// import { getAll } from '../utils/api-server/posts'
 
 class App extends Component {
+
   render() {
     return (
       <div className="App">
@@ -20,4 +23,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default App
