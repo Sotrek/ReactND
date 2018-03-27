@@ -1,17 +1,42 @@
-import React, { Component } from 'react';
-
-
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { fetchAllPosts } from '../actions'
 
 class AllCategories extends Component {
 
-	render(){
-		return (
-			<div className="list-view">
-				<p>List of all categories posts</p>
-			</div>
-		);
+	componentDidMount(){
+		this.props.getAllPosts();
+	}
+
+	render() {
+	    const { posts } = this.props
+
+	    return(
+	    	<div>
+	    		<ul>
+	    			{posts.map(post => (
+	    				<li key={post.id}>
+	    					<h2>{post.title}</h2>
+	    					<h3>Author: {post.author}</h3>
+	    				</li>
+	    			))}
+	    		</ul>
+	    	</div>
+	    )
 	}
 }
 
 
-export default AllCategories
+const mapStateToProps = ({ allPostsReducer }) => ({
+     posts: allPostsReducer.posts
+})
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+  	getAllPosts: () => dispatch(fetchAllPosts()),
+  }
+}
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(AllCategories);

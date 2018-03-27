@@ -1,7 +1,8 @@
-import { getAllCategories, addPost } from '../utils/api'
+import { getAllCategories, addPost, getAllPosts } from '../utils/api'
 
 export const ADD_POST = 'ADD_POST'
 export const GET_CATEGORIES = 'GET_CATEGORIES'
+export const GET_ALL_POSTS = 'GET_ALL_POSTS'
 
 export const addPostAction = (post) => dispatch => (
   addPost(post)
@@ -13,8 +14,6 @@ export const addPostAction = (post) => dispatch => (
     })
 )
 
-
-
 export const fetchCategories = () => dispatch => (
   getAllCategories()
     .then(categories => {
@@ -24,3 +23,13 @@ export const fetchCategories = () => dispatch => (
     	})
     })
 )
+
+export const fetchAllPosts = () => dispatch => {
+	getAllPosts()
+		.then(posts => {
+			dispatch({
+				type: GET_ALL_POSTS,
+				posts
+			})
+		})
+}

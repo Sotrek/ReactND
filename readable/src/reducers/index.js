@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { ADD_POST, GET_CATEGORIES } from "../actions";
+import { ADD_POST, GET_CATEGORIES, GET_ALL_POSTS } from "../actions";
 
 
 
@@ -27,7 +27,23 @@ const categoriesReducer = (state = { categories: [] }, action) => {
 	}
 }
 
+const allPostsReducer = (state = { posts: [] }, action) => {
+	switch(action.type) {
+		case GET_ALL_POSTS :
+		  return {
+		    ...state,
+		    posts: action.posts
+		  }
+		default:
+		  return state
+	}
+}
+
+
+
+
 export default combineReducers({
 	postsReducer,
 	categoriesReducer,
+	allPostsReducer
 })
