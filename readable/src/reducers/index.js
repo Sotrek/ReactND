@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { addPostAction, fetchCategories, ADD_POST, GET_CATEGORIES } from "../actions";
+import { ADD_POST, GET_CATEGORIES } from "../actions";
 
 
 

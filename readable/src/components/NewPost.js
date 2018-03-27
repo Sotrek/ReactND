@@ -98,11 +98,11 @@ class NewPost extends Component {
 	              placeholder="Select a Category"
 	              value={this.state.category}
 	              onChange={this.categoryChange}>
-	              	{/*categories.map(category => (
+	              	{categories.map(category => (
 				        <option
 				          key={category.name}
 				          value={category.name}>{category.name}</option>
-				      ))*/}
+				      ))}
 	            </select>
 	        </label>
 
@@ -120,11 +120,9 @@ class NewPost extends Component {
 }
 
 
-const mapStateToProps = ({ categories }) => ({
-     categories
+const mapStateToProps = ({categoriesReducer}) => ({
+     categories: categoriesReducer.categories
 })
-
-console.log(mapStateToProps);
 
 const mapDispatchToProps = (dispatch) => {
   return {

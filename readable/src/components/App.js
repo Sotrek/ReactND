@@ -5,8 +5,6 @@ import AllCategories from './AllCategories'
 import NewPost from './NewPost'
 
 
-// import { getAll } from '../utils/api-server/posts'
-
 class App extends Component {
 
   render() {
