@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { ADD_POST, GET_CATEGORIES, GET_ALL_POSTS, EDIT_POST, GET_POST } from "../actions";
+import { ADD_POST, GET_CATEGORIES, GET_ALL_POSTS, EDIT_POST, GET_POST, DELETE_POST } from "../actions";
 
 
 
@@ -21,6 +21,11 @@ const postsReducer = (state = { posts:[] }, action) =>{
                 ...action.post
 	        }
 	    case GET_POST :
+	    	return {
+	    		...state,
+	    		post: action.post
+	    	}
+	    case DELETE_POST :
 	    	return {
 	    		...state,
 	    		post: action.post

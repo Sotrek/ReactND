@@ -1,10 +1,11 @@
-import { getAllCategories, addPost, getAllPosts, editPost, getPost } from '../utils/api'
+import { getAllCategories, addPost, getAllPosts, editPost, getPost, deletePost } from '../utils/api'
 
 export const ADD_POST = 'ADD_POST'
 export const GET_CATEGORIES = 'GET_CATEGORIES'
 export const GET_ALL_POSTS = 'GET_ALL_POSTS'
 export const EDIT_POST = 'EDIT_POST'
 export const GET_POST = 'GET_POST'
+export const DELETE_POST = 'DELETE_POST'
 
 export const addPostAction = (post) => dispatch => (
   addPost(post)
@@ -53,6 +54,16 @@ export const fetchPostAction = (id) => dispatch => (
 			dispatch({
 				type: GET_POST,
 				post
+			})
+		})
+)
+
+export const deletePostAction = (id) => dispatch => (
+	deletePost(id)
+		.then((id) => {
+			dispatch({
+				type: DELETE_POST,
+				id
 			})
 		})
 )

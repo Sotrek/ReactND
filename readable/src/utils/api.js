@@ -50,3 +50,18 @@ export const getPost = (id) => {
   return fetch(`${BASE_URL}/posts/${id}`, { headers })
     .then(response => response.json())
 }
+
+// DELETE /posts/:id for deletePost
+export const deletePost = (id) => {
+  return fetch(`${BASE_URL}/posts/${id}`, {
+    method: 'DELETE',
+    headers: {
+      ...headers
+    },
+  })
+  	.then(function(resp){
+    resp.json().then(function(data){
+      console.log(data);
+    })
+  })
+}
