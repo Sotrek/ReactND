@@ -31,3 +31,22 @@ export const getAllPosts = () => {
   return fetch(`${BASE_URL}/posts`, { headers })
     .then(response => response.json())
 }
+
+// PUT /posts/:id - for editPost
+export const editPost = (id, post) => {
+  return fetch(`${BASE_URL}/posts/${id}`, {
+    method: 'PUT',
+    headers: {
+      ...headers
+    },
+    body: JSON.stringify(post)
+  })
+  .then(response => response.json())
+}
+
+// GET /posts/:id - for getPost
+export const getPost = (id) => {
+	// console.log(id)
+  return fetch(`${BASE_URL}/posts/${id}`, { headers })
+    .then(response => response.json())
+}

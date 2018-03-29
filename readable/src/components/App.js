@@ -3,6 +3,7 @@ import '../App.css'
 import { Route } from 'react-router-dom'
 import AllCategories from './AllCategories'
 import NewPost from './NewPost'
+import EditPost from './EditPost'
 
 
 class App extends Component {
@@ -15,6 +16,9 @@ class App extends Component {
         )}/>
         <Route exact path="/new-post" render={()=>(
             <NewPost />
+        )}/>
+        <Route exact path="/edit-post/:id" render={(props)=>(
+            <EditPost {...props}/>
         )}/>
       </div>
     );

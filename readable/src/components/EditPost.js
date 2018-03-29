@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { addPostAction, fetchCategories } from '../actions'
-import { uniqueId } from '../utils/helper'
+import { editPostAction, fetchCategories, fetchPostAction } from '../actions'
 
-class NewPost extends Component {
+class EditPost extends Component {
 	state = {
+		id:'',
 		title: '',
 		body: '',
 		author: '',
@@ -13,21 +13,35 @@ class NewPost extends Component {
 
 	componentDidMount(){
 		this.props.getCategories();
+
+		const { id } = this.props.match.params
+     	console.log(id)
+
+	    this.props.getPost(id)
+	      .then(() => {
+	      	console.log(this.props)
+	      	const { title, author, body, category } = this.props.post
+	        this.setState({
+	          id,
+	          title,
+	          author,
+	          body,
+	          category
+	        })
+	      })
 	}
 
-	newPostClick() {
-	    const { title, body, author, category } = this.state
+	editPostClick() {
+	    const { title, body, author, category, id } = this.state
 
 	    if (title && body && author && category) {
-		  const newPost = {
-		    id: uniqueId(),
-		    timestamp: Date.now(),
+		  const _editPost = {
 		    title,
 		    body,
 		    author,
 		   	category
 		  }
-		  this.props.addPost(newPost)
+		  this.props.editPost(id, _editPost)
 		    .then(() => this.setState({
 		      title: '',
 		      body: '',
@@ -98,7 +112,6 @@ class NewPost extends Component {
 	              placeholder="Select a Category"
 	              value={this.state.category}
 	              onChange={this.categoryChange}>
-	              <option default>Please select a category</option>
 	              	{categories.map(category => (
 				        <option
 				          key={category.name}
@@ -113,7 +126,7 @@ class NewPost extends Component {
 	            className="new-post-button"
 	            type="button"
 	            value="Submit"
-	            onClick={this.newPostClick.bind(this)} />
+	            onClick={this.editPostClick.bind(this)} />
 	        </div>
 	      </form>
 	    )
@@ -121,19 +134,19 @@ class NewPost extends Component {
 }
 
 
-const mapStateToProps = ({ categoriesReducer }) => ({
-     categories: categoriesReducer.categories
+const mapStateToProps = ({categoriesReducer, postsReducer}) => ({
+     categories: categoriesReducer.categories,
+     post: postsReducer.post,
 })
-
-// console.log(mapStateToProps);
 
 const mapDispatchToProps = (dispatch) => {
   return {
-  	addPost: (post) => dispatch(addPostAction(post)),
+  	editPost: (id, post) => dispatch(editPostAction(id, post)),
+  	getPost: (id) => dispatch(fetchPostAction(id)),
     getCategories: () => dispatch(fetchCategories()),
   }
 }
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewPost);
+export default connect(mapStateToProps, mapDispatchToProps)(EditPost);

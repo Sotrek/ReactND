@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchAllPosts } from '../actions'
+import { fetchAllPosts, editPostAction, fetchCategories } from '../actions'
+import { Link } from 'react-router-dom'
 
 class AllCategories extends Component {
 
@@ -18,6 +19,7 @@ class AllCategories extends Component {
 	    				<li key={post.id}>
 	    					<h2>{post.title}</h2>
 	    					<h3>Author: {post.author}</h3>
+	    					<Link to={`/edit-post/${post.id}`}>Edit</Link>
 	    				</li>
 	    			))}
 	    		</ul>
@@ -27,13 +29,16 @@ class AllCategories extends Component {
 }
 
 
-const mapStateToProps = ({ allPostsReducer }) => ({
-     posts: allPostsReducer.posts
+const mapStateToProps = ({ postsReducer, categoriesReducer }) => ({
+     posts: postsReducer.posts,
+     categories: categoriesReducer.categories,
 })
 
 const mapDispatchToProps = (dispatch) => {
   return {
   	getAllPosts: () => dispatch(fetchAllPosts()),
+  	editPost: (id, post) => dispatch(editPostAction(id, post)),
+    getCategories: () => dispatch(fetchCategories()),
   }
 }
 
