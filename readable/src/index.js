@@ -19,7 +19,7 @@ const store = createStore(
   )
 )
 
-console.log(store.getState())
+// console.log(store.getState())
 
 ReactDOM.render(
 	<BrowserRouter>

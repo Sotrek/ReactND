@@ -65,3 +65,11 @@ export const deletePost = (id) => {
     })
   })
 }
+
+// GET /:category
+export const getCategoryPosts = (category) => {
+	return fetch(`${BASE_URL}/${category}/posts`, { headers })
+	.then(res => res.json())
+	// .then(data => data)
+	.then(result => console.log(result))
+}

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { addPostAction, fetchCategories } from '../actions'
 import { uniqueId } from '../utils/helper'
+import {withRouter} from 'react-router'
 
 class NewPost extends Component {
 	state = {
@@ -27,7 +28,9 @@ class NewPost extends Component {
 		    author,
 		   	category
 		  }
-		  this.props.addPost(newPost)
+		  this.props.addPost(newPost, ()=>{
+		  	this.props.history.push('/');
+		  })
 		    .then(() => this.setState({
 		      title: '',
 		      body: '',
@@ -129,11 +132,11 @@ const mapStateToProps = ({ categoriesReducer }) => ({
 
 const mapDispatchToProps = (dispatch) => {
   return {
-  	addPost: (post) => dispatch(addPostAction(post)),
+  	addPost: (post, callback) => dispatch(addPostAction(post, callback)),
     getCategories: () => dispatch(fetchCategories()),
   }
 }
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewPost);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NewPost));

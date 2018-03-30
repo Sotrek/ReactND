@@ -1,14 +1,15 @@
 import { combineReducers } from 'redux'
-import { ADD_POST, GET_CATEGORIES, GET_ALL_POSTS, EDIT_POST, GET_POST, DELETE_POST } from "../actions";
+import { ADD_POST, GET_CATEGORIES, GET_ALL_POSTS, EDIT_POST, GET_POST, DELETE_POST, GET_CATEGORY_POSTS } from "../actions";
 
 
 
 const postsReducer = (state = { posts:[] }, action) =>{
+	console.log(action)
 	switch(action.type) {
 		case ADD_POST :
 			return {
 		        ...state,
-		    	posts: [...state.posts, action.post]
+		    	posts: action.post
 		  	}
 		case GET_ALL_POSTS :
 		  return {
@@ -28,7 +29,13 @@ const postsReducer = (state = { posts:[] }, action) =>{
 	    case DELETE_POST :
 	    	return {
 	    		...state,
-	    		post: action.post
+	    		post: action.post,
+	    		'deleted': true
+	    	}
+	    case GET_CATEGORY_POSTS :
+	    	return {
+	    		...state,
+	    		posts: [...state.posts, action.post]
 	    	}
 		default :
 			return state
