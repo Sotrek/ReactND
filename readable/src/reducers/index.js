@@ -4,7 +4,7 @@ import { ADD_POST, GET_CATEGORIES, GET_ALL_POSTS, EDIT_POST, GET_POST, DELETE_PO
 
 
 const postsReducer = (state = { posts:[] }, action) =>{
-	console.log(action)
+	// console.log(action)
 	switch(action.type) {
 		case ADD_POST :
 			return {
@@ -35,7 +35,7 @@ const postsReducer = (state = { posts:[] }, action) =>{
 	    case GET_CATEGORY_POSTS :
 	    	return {
 	    		...state,
-	    		posts: [...state.posts, action.post]
+	    		posts: action.posts
 	    	}
 		default :
 			return state

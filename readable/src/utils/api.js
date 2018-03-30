@@ -67,9 +67,19 @@ export const deletePost = (id) => {
 }
 
 // GET /:category
-export const getCategoryPosts = (category) => {
-	return fetch(`${BASE_URL}/${category}/posts`, { headers })
-	.then(res => res.json())
-	// .then(data => data)
-	.then(result => console.log(result))
+// export const getCategoryPosts = (category) => {
+// 	return fetch(`${BASE_URL}/${category}/posts`, { headers })
+// 	.then(handleErrors)
+// 	.then(response => response.json())
+// 	// .then(data => data)
+// 	.then(result => console.log(result))
+
+// }
+
+// Handle HTTP errors since fetch won't.
+function handleErrors(response) {
+  if (!response.ok) {
+    throw Error(response.statusText);
+  }
+  return response;
 }

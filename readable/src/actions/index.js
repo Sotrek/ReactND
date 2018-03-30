@@ -71,11 +71,12 @@ export const deletePostAction = (id, callback) => dispatch => (
 )
 
 export const fetchCategoryPostsAction = (category) => dispatch => (
-	getCategoryPosts(category)
+	getAllPosts()
 		.then(posts => {
 			dispatch({
 				type: GET_CATEGORY_POSTS,
 				posts
 			})
+			console.log(posts)
 		})
 )

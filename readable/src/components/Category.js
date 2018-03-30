@@ -22,15 +22,15 @@ class AllCategories extends Component {
 	    return(
 	    	<div>
 	    		<ul>
-	    			{/*
-	    				posts.filter(post => post.category === this.props.match.params).map(post =>
+	    			{
+	    				posts.filter(post => post.category === this.props.match.params.category).map(post =>
 	    				<li key={post.id}>
 	    					<h2>{post.title}</h2>
 	    					<h3>Author: {post.author}</h3>
 	    					<Link to={`/edit-post/${post.id}`}>Edit</Link>
 	    					<button onClick={() => this.props.deletePost(post.id)}>Delete</button>
 	    				</li>
-	    			)*/}
+	    			)}
 	    		</ul>
 	    	</div>
 	    )
