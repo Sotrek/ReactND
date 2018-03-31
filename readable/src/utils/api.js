@@ -23,7 +23,7 @@ export const addPost = (post) => {
     },
     body: JSON.stringify(post)
   })
-  .then(data => data.json())
+  .then(response => response.json())
 }
 
 //GET /posts - for getAllPosts
@@ -59,27 +59,11 @@ export const deletePost = (id) => {
       ...headers
     },
   })
-  	.then(function(resp){
-    resp.json().then(function(data){
-      console.log(data);
-    })
-  })
+  	.then(response => response.json())
 }
 
 // GET /:category
-// export const getCategoryPosts = (category) => {
-// 	return fetch(`${BASE_URL}/${category}/posts`, { headers })
-// 	.then(handleErrors)
-// 	.then(response => response.json())
-// 	// .then(data => data)
-// 	.then(result => console.log(result))
-
-// }
-
-// Handle HTTP errors since fetch won't.
-function handleErrors(response) {
-  if (!response.ok) {
-    throw Error(response.statusText);
-  }
-  return response;
+export const getCategoryPosts = (category) => {
+	return fetch(`${BASE_URL}/${category}/posts`, { headers })
+	.then(response => response.json())
 }

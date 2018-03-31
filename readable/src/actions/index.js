@@ -32,6 +32,7 @@ export const fetchCategories = () => dispatch => (
 export const fetchAllPosts = () => dispatch => {
 	getAllPosts()
 		.then(posts => {
+
 			dispatch({
 				type: GET_ALL_POSTS,
 				posts
@@ -39,7 +40,7 @@ export const fetchAllPosts = () => dispatch => {
 		})
 }
 
-export const editPostAction = (id, post) => dispatch => (
+export const editPostAction = (id, post,callback) => dispatch => (
 	editPost(id,post)
 		.then(post => {
 			dispatch({
@@ -47,6 +48,7 @@ export const editPostAction = (id, post) => dispatch => (
 				id,
 				post
 			})
+			callback()
 		})
 )
 
@@ -60,8 +62,8 @@ export const fetchPostAction = (id) => dispatch => (
 		})
 )
 
-export const deletePostAction = (id, callback) => dispatch => (
-	deletePost(id).then(callback)
+export const deletePostAction = (id) => dispatch => (
+	deletePost(id)
 		.then((id) => {
 			dispatch({
 				type: DELETE_POST,
@@ -71,12 +73,11 @@ export const deletePostAction = (id, callback) => dispatch => (
 )
 
 export const fetchCategoryPostsAction = (category) => dispatch => (
-	getAllPosts()
+	getCategoryPosts(category)
 		.then(posts => {
 			dispatch({
 				type: GET_CATEGORY_POSTS,
 				posts
 			})
-			console.log(posts)
 		})
 )

@@ -15,7 +15,6 @@ class EditPost extends Component {
 		this.props.getCategories();
 
 		const { id } = this.props.match.params
-     	console.log(id)
 
 	    this.props.getPost(id)
 	      .then(() => {
@@ -41,7 +40,10 @@ class EditPost extends Component {
 		    author,
 		   	category
 		  }
-		  this.props.editPost(id, _editPost)
+		  const callback = ()=>{
+		  	this.props.history.push('/');
+		  }
+		  this.props.editPost(id, _editPost, callback)
 		    .then(() => this.setState({
 		      title: '',
 		      body: '',
@@ -141,7 +143,7 @@ const mapStateToProps = ({categoriesReducer, postsReducer}) => ({
 
 const mapDispatchToProps = (dispatch) => {
   return {
-  	editPost: (id, post) => dispatch(editPostAction(id, post)),
+  	editPost: (id, post, callback) => dispatch(editPostAction(id, post, callback)),
   	getPost: (id) => dispatch(fetchPostAction(id)),
     getCategories: () => dispatch(fetchCategories()),
   }

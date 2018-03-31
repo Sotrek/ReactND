@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { addPostAction, fetchCategories } from '../actions'
 import { uniqueId } from '../utils/helper'
-import {withRouter} from 'react-router'
 
 class NewPost extends Component {
 	state = {
@@ -18,6 +17,7 @@ class NewPost extends Component {
 
 	newPostClick() {
 	    const { title, body, author, category } = this.state
+	    console.log(this.state)
 
 	    if (title && body && author && category) {
 		  const newPost = {
@@ -28,15 +28,11 @@ class NewPost extends Component {
 		    author,
 		   	category
 		  }
-		  this.props.addPost(newPost, ()=>{
+		  const callback = ()=>{
 		  	this.props.history.push('/');
-		  })
-		    .then(() => this.setState({
-		      title: '',
-		      body: '',
-		      author: '',
-		      category: ''
-		    }))
+		  }
+		  this.props.addPost(newPost, callback)
+
 		} else {
 			alert('Please fill in all the fields and submit again')
 		}
@@ -128,8 +124,6 @@ const mapStateToProps = ({ categoriesReducer }) => ({
      categories: categoriesReducer.categories
 })
 
-// console.log(mapStateToProps);
-
 const mapDispatchToProps = (dispatch) => {
   return {
   	addPost: (post, callback) => dispatch(addPostAction(post, callback)),
@@ -139,4 +133,4 @@ const mapDispatchToProps = (dispatch) => {
 
 
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NewPost));
+export default connect(mapStateToProps, mapDispatchToProps)(NewPost);
