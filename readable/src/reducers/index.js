@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { ADD_POST, GET_CATEGORIES, GET_ALL_POSTS, EDIT_POST, GET_POST, DELETE_POST, GET_CATEGORY_POSTS } from "../actions";
+import { ADD_POST, GET_CATEGORIES, GET_ALL_POSTS, EDIT_POST, GET_POST, DELETE_POST, GET_CATEGORY_POSTS, SET_SORTING } from "../actions";
 
 
 
@@ -56,8 +56,20 @@ const categoriesReducer = (state = { categories: [] }, action) => {
 	}
 }
 
+const sortingReducer = (state = { sortBy: [] }, action) => {
+	switch(action.type) {
+		case SET_SORTING :
+		  return {
+		    ...state,
+		    sortBy: action.sortBy
+		  }
+		default:
+		  return state
+	}
+}
 
 export default combineReducers({
 	postsReducer,
 	categoriesReducer,
+	sortingReducer,
 })

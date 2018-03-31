@@ -7,6 +7,7 @@ export const EDIT_POST = 'EDIT_POST'
 export const GET_POST = 'GET_POST'
 export const DELETE_POST = 'DELETE_POST'
 export const GET_CATEGORY_POSTS = 'GET_CATEGORY_POSTS'
+export const SET_SORTING = 'SET_SORTING'
 
 export const addPostAction = (post, callback) => dispatch => (
   addPost(post)
@@ -80,4 +81,11 @@ export const fetchCategoryPostsAction = (category) => dispatch => (
 				posts
 			})
 		})
+)
+
+export const setSortingAction = (sortBy) => dispatch => (
+	dispatch({
+		type: SET_SORTING,
+		sortBy
+	})
 )
