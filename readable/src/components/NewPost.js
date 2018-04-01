@@ -55,7 +55,7 @@ class NewPost extends Component {
 	}
 
 	render() {
-	    const { categories } = this.props
+	    const { categories =[] } = this.props.categories
 
 	    return(
 	      <form className="new-post-form">
@@ -120,8 +120,8 @@ class NewPost extends Component {
 }
 
 
-const mapStateToProps = ({ categoriesReducer }) => ({
-     categories: categoriesReducer.categories
+const mapStateToProps = ({ categories }) => ({
+     categories: categories
 })
 
 const mapDispatchToProps = (dispatch) => {

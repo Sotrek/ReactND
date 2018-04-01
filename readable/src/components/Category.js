@@ -11,8 +11,8 @@ class Category extends Component {
 	}
 
 	render() {
-	    const { posts } = this.props
-	    console.log(this.props)
+	    const { posts=[] } = this.props.posts
+	    // console.log(this.props)
 
 	    return(
 	    	<div>
@@ -38,14 +38,13 @@ class Category extends Component {
 		    			{
 		    				posts.filter(post => post.category === this.props.match.params.category)
 			    				.sort((a, b) => {
-		    						console.log(this.props.sortBy)
-					                switch (this.props.sortBy) {
+		    						switch (this.props.sortBy) {
 					                  case 'BY_DATE_OLDEST':
 					                    return a.timestamp - b.timestamp
 					                  case 'BY_DATE_NEWEST':
 					                    return b.timestamp - a.timestamp
 					                  default:
-					                    return b.timestamp - a.timestamp
+					                    return a.timestamp - b.timestamp
 					                }
 					            })
 			    				.map(post =>
@@ -65,10 +64,10 @@ class Category extends Component {
 }
 
 
-const mapStateToProps = ({ postsReducer, categoriesReducer, sortingReducer }) => ({
-     posts: postsReducer.posts,
-     categories: categoriesReducer.categories,
-     sortBy: sortingReducer.sortBy,
+const mapStateToProps = ({ posts, categories, sortBy }) => ({
+     posts: posts,
+     categories: categories,
+     sortBy: sortBy.sortBy,
 })
 
 const mapDispatchToProps = (dispatch) => {

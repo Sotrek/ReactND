@@ -66,6 +66,7 @@ export const fetchPostAction = (id) => dispatch => (
 export const deletePostAction = (id) => dispatch => (
 	deletePost(id)
 		.then((id) => {
+			console.log(id)
 			dispatch({
 				type: DELETE_POST,
 				id

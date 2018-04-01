@@ -17,9 +17,9 @@ class EditPost extends Component {
 		const { id } = this.props.match.params
 
 	    this.props.getPost(id)
-	      .then(() => {
-	      	console.log(this.props)
-	      	const { title, author, body, category } = this.props.post
+	      .then((post) => {
+	      	console.log(this.props.posts.post)
+	      	const { title, author, body, category } = this.props.posts.post
 	        this.setState({
 	          id,
 	          title,
@@ -44,12 +44,6 @@ class EditPost extends Component {
 		  	this.props.history.push('/');
 		  }
 		  this.props.editPost(id, _editPost, callback)
-		    .then(() => this.setState({
-		      title: '',
-		      body: '',
-		      author: '',
-		      category: ''
-		    }))
 		} else {
 			alert('Please fill in all the fields and submit again')
 		}
@@ -72,7 +66,7 @@ class EditPost extends Component {
 	}
 
 	render() {
-	    const { categories } = this.props
+	    const { categories=[] } = this.props.categories
 
 	    return(
 	      <form className="new-post-form">
@@ -136,9 +130,9 @@ class EditPost extends Component {
 }
 
 
-const mapStateToProps = ({categoriesReducer, postsReducer}) => ({
-     categories: categoriesReducer.categories,
-     post: postsReducer.post,
+const mapStateToProps = ({categories, posts}) => ({
+     categories: categories,
+     posts: posts,
 })
 
 const mapDispatchToProps = (dispatch) => {

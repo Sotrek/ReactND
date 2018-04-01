@@ -14,7 +14,7 @@ class PostDetail extends Component {
 
 		this.props.getPost(id)
 	      .then(() => {
-	      	const { title, author, body, category } = this.props.post
+	      	const { title=[], author=[], body=[], category=[] } = this.props
 	        this.setState({
 	          title,
 	          author,
@@ -37,8 +37,8 @@ class PostDetail extends Component {
 	}
 }
 
-const mapStateToProps = ({postsReducer}) => ({
-     post: postsReducer.post
+const mapStateToProps = ({posts}) => ({
+     posts: posts
 })
 
 const mapDispatchToProps = (dispatch) => {

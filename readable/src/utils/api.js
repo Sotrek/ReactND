@@ -49,6 +49,7 @@ export const getPost = (id) => {
 	// console.log(id)
   return fetch(`${BASE_URL}/posts/${id}`, { headers })
     .then(response => response.json())
+    // .then(res => console.log(res))
 }
 
 // DELETE /posts/:id for deletePost
@@ -60,6 +61,8 @@ export const deletePost = (id) => {
     },
   })
   	.then(response => response.json())
+  	.then(res => console.log(res))
+
 }
 
 // GET /:category

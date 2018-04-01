@@ -3,7 +3,7 @@ import { ADD_POST, GET_CATEGORIES, GET_ALL_POSTS, EDIT_POST, GET_POST, DELETE_PO
 
 
 
-const postsReducer = (state = { posts:[] }, action) =>{
+const posts = (state = [], action) =>{
 	console.log(action)
 	switch(action.type) {
 		case ADD_POST :
@@ -19,7 +19,7 @@ const postsReducer = (state = { posts:[] }, action) =>{
 		case EDIT_POST :
 			return {
                 ...state,
-                ...action.post
+                post: action.post
 	        }
 	    case GET_POST :
 	    	return {
@@ -27,12 +27,10 @@ const postsReducer = (state = { posts:[] }, action) =>{
 	    		post: action.post
 	    	}
 	    case DELETE_POST :
+	    // const post = action.post;
+      	// return state.filter(i => i.id !== post.id);
 	    	return {
-	    		...state,
-	    		[action.id]: {
-	    			...state[action.id],
-	    			'deleted': true
-	    		}
+	    		...state
 	    	}
 	    case GET_CATEGORY_POSTS :
 	    	return {
@@ -44,7 +42,7 @@ const postsReducer = (state = { posts:[] }, action) =>{
 	}
 }
 
-const categoriesReducer = (state = { categories: [] }, action) => {
+const categories = (state = [], action) => {
 	switch(action.type) {
 		case GET_CATEGORIES :
 		  return {
@@ -56,7 +54,7 @@ const categoriesReducer = (state = { categories: [] }, action) => {
 	}
 }
 
-const sortingReducer = (state = { sortBy: [] }, action) => {
+const sortBy = (state = [], action) => {
 	switch(action.type) {
 		case SET_SORTING :
 		  return {
@@ -69,7 +67,7 @@ const sortingReducer = (state = { sortBy: [] }, action) => {
 }
 
 export default combineReducers({
-	postsReducer,
-	categoriesReducer,
-	sortingReducer,
+	posts,
+	categories,
+	sortBy,
 })

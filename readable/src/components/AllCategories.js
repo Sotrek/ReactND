@@ -9,14 +9,9 @@ class AllCategories extends Component {
 		this.props.getAllPosts();
 
 	}
-	// componentDidUpdate(){
-	// 	this.props.getAllPosts();
-
-	// }
 
 	render() {
-	    const { posts } = this.props
-	    // console.log(this.props.posts)
+	    const { posts=[] } = this.props.posts
 
 	    return(
 	    	<div>
@@ -42,14 +37,13 @@ class AllCategories extends Component {
 	    				{/*console.log(posts)*/}
 	    				{posts.filter(post => !post.deleted)
 	    					.sort((a, b) => {
-	    						console.log(this.props.sortBy)
-				                switch (this.props.sortBy) {
+	    						switch (this.props.sortBy) {
 				                  case 'BY_DATE_OLDEST':
 				                    return a.timestamp - b.timestamp
 				                  case 'BY_DATE_NEWEST':
 				                    return b.timestamp - a.timestamp
 				                  default:
-				                    return b.timestamp - a.timestamp
+				                    return a.timestamp - b.timestamp
 				                }
 				            })
 						  	.map(post =>
@@ -70,10 +64,10 @@ class AllCategories extends Component {
 }
 
 
-const mapStateToProps = ({ postsReducer, categoriesReducer, sortingReducer }) => ({
-     posts: postsReducer.posts,
-     categories: categoriesReducer.categories,
-     sortBy: sortingReducer.sortBy,
+const mapStateToProps = ({ posts, categories, sortBy }) => ({
+     posts: posts,
+     categories: categories,
+     sortBy: sortBy.sortBy,
 })
 
 const mapDispatchToProps = (dispatch) => {
