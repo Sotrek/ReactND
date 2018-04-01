@@ -13,8 +13,8 @@ class PostDetail extends Component {
 		const id = this.props.match.params.id
 
 		this.props.getPost(id)
-	      .then(() => {
-	      	const { title=[], author=[], body=[], category=[] } = this.props
+	      .then((post) => {
+	      	const { title=[], author=[], body=[], category=[] } = this.props.posts.post
 	        this.setState({
 	          title,
 	          author,

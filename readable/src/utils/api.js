@@ -61,7 +61,7 @@ export const deletePost = (id) => {
     },
   })
   	.then(response => response.json())
-  	.then(res => console.log(res))
+  	.then(res => res.id)
 
 }
 

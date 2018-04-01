@@ -27,10 +27,13 @@ const posts = (state = [], action) =>{
 	    		post: action.post
 	    	}
 	    case DELETE_POST :
+	    	// console.log(state)
+	    	const { posts } = state;
+	    	const updatedState = posts.filter(post => post.id !== action.id)
 	    // const post = action.post;
       	// return state.filter(i => i.id !== post.id);
 	    	return {
-	    		...state
+	    		posts: updatedState
 	    	}
 	    case GET_CATEGORY_POSTS :
 	    	return {
