@@ -71,10 +71,10 @@ export const getCategoryPosts = (category) => {
 	.then(response => response.json())
 }
 
-// PUT /posts/:id - for VotePost
+// POST /posts/:id - for VotePost
 export const VotePost = (id, option) => {
   return fetch(`${BASE_URL}/posts/${id}`, {
-    method: 'PUT',
+    method: 'POST',
     headers: {
       ...headers
     },
