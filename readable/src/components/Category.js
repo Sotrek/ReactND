@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { editPostAction, deletePostAction, fetchCategoryPostsAction, setSortingAction } from '../actions'
 import { Link } from 'react-router-dom'
+import MainMenu from './MainMenu'
+
 
 class Category extends Component {
 
@@ -16,9 +18,8 @@ class Category extends Component {
 
 	    return(
 	    	<div>
-		    	<div>
-		    		<Link to={`/new-post/`}>+ ADD POST</Link>
-		    	</div>
+	    		<MainMenu/>
+
 		    	<div>
 	              <h2>Sort Posts By</h2>
 	              <ul>

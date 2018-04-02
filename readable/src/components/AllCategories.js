@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchAllPosts, editPostAction, fetchCategories, deletePostAction, setSortingAction } from '../actions'
 import { Link } from 'react-router-dom'
+import MainMenu from './MainMenu'
 
 class AllCategories extends Component {
 
@@ -12,12 +13,10 @@ class AllCategories extends Component {
 
 	render() {
 	    const { posts=[] } = this.props.posts
-
+	    console.log(this.props)
 	    return(
 	    	<div>
-		    	<div>
-		    		<Link to={`/new-post/`}>+ ADD POST</Link>
-		    	</div>
+	    		<MainMenu/>
 		    	<div>
 	              <h2>Sort Posts By</h2>
 	              <ul>
@@ -54,7 +53,6 @@ class AllCategories extends Component {
 		    					<button onClick={() => this.props.deletePost(post.id)}>Delete</button>
 		    				</li>
 			    			)
-
 	    				}
 		    		</ul>
 		    	</div>

@@ -18,7 +18,7 @@ class EditPost extends Component {
 
 	    this.props.getPost(id)
 	      .then((post) => {
-	      	console.log(this.props.posts.post)
+	      	// console.log(this.props.posts.post)
 	      	const { title, author, body, category } = this.props.posts.post
 	        this.setState({
 	          id,
