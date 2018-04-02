@@ -49,7 +49,7 @@ class Category extends Component {
 					            })
 			    				.map(post =>
 				    				<li key={post.id}>
-				    					<h2>{post.title}</h2>
+				    					<h2 onClick={()=> this.props.history.push(`/${post.category}/${post.id}`)}>{post.title}</h2>
 				    					<h3>Author: {post.author}</h3>
 				    					<Link to={`/edit-post/${post.category}/${post.id}`}>Edit</Link>
 				    					<button onClick={() => this.props.deletePost(post.id)}>Delete</button>
