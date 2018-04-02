@@ -49,7 +49,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-
-const mergeProps = null;
-
-export default connect(mapStateToProps, mapDispatchToProps, mergeProps, { pure: false })(MainMenu);
+export default connect(mapStateToProps, mapDispatchToProps)(MainMenu);

@@ -37,6 +37,15 @@ class AllCategories extends Component {
 	                  >
 	                  	Date
 	                  </li>
+	                  <li onClick={() =>
+	                    this.props.handleSort(
+	                      this.props.sortBy === 'BY_VOTE_COUNT_HIGHEST'
+	                        ? 'BY_VOTE_COUNT_LOWEST'
+	                        : 'BY_VOTE_COUNT_HIGHEST'
+	                    )}
+	                  >
+	                  	Votes
+	                  </li>
 	              </ul>
 	            </div>
 		    	<div>
@@ -45,12 +54,14 @@ class AllCategories extends Component {
 	    				{posts.filter(post => !post.deleted)
 	    					.sort((a, b) => {
 	    						switch (this.props.sortBy) {
+	    						  case 'BY_VOTE_COUNT_LOWEST':
+				                    return a.voteScore - b.voteScore
 				                  case 'BY_DATE_OLDEST':
 				                    return a.timestamp - b.timestamp
 				                  case 'BY_DATE_NEWEST':
 				                    return b.timestamp - a.timestamp
 				                  default:
-				                    return a.timestamp - b.timestamp
+				                    return b.voteScore - a.voteScore
 				                }
 				            })
 						  	.map(post =>
