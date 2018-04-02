@@ -21,7 +21,7 @@ class MainMenu extends Component {
 					<ul>
 
 						{ categories.map(category =>(
-							<Link to={`${category.name}`} key={category.name}>
+							<Link to={`./${category.name}`} key={category.name}>
 								<li key={category.name}>
 									{category.name}
 								</li>
