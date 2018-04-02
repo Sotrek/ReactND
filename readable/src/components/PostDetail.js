@@ -30,6 +30,9 @@ class PostDetail extends Component {
 		return(
 			<div>
 				<div>
+					<button onClick={()=>this.props.history.goBack()}>Back to posts</button>
+				</div>
+				<div>
 					<h1>{title}</h1>
 					<h3>{author}</h3>
 					<h5>{category}</h5>
