@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { editPostAction, deletePostAction, fetchCategoryPostsAction, setSortingAction } from '../actions'
+import { editPostAction, deletePostAction, fetchCategoryPostsAction, setSortingAction,
+		 upVotePostAction, downVotePostAction } from '../actions'
 import { Link } from 'react-router-dom'
 import MainMenu from './MainMenu'
 
@@ -11,7 +12,12 @@ class Category extends Component {
 		const category = this.props.match.params.category
 		this.props.fetchCategoryPosts(category)
 	}
-
+	upVoteClick(id){
+		this.props.upVote(id)
+	}
+	downVoteClick(id){
+		this.props.downVote(id)
+	}
 	render() {
 	    const { posts=[] } = this.props.posts
 	    // console.log(this.props)
@@ -52,6 +58,11 @@ class Category extends Component {
 				    				<li key={post.id}>
 				    					<h2 onClick={()=> this.props.history.push(`/${post.category}/${post.id}`)}>{post.title}</h2>
 				    					<h3>Author: {post.author}</h3>
+				    					<div>
+				    						<span>{post.voteScore}</span>
+				    						<button onClick={()=> this.upVoteClick(post.id)}>Up Vote</button>
+											<button onClick={()=> this.downVoteClick(post.id)}>Down Vote</button>
+				    					</div>
 				    					<Link to={`/edit-post/${post.category}/${post.id}`}>Edit</Link>
 				    					<button onClick={() => this.props.deletePost(post.id)}>Delete</button>
 				    				</li>
@@ -76,7 +87,9 @@ const mapDispatchToProps = (dispatch) => {
   	fetchCategoryPosts: (category) => dispatch(fetchCategoryPostsAction(category)),
   	editPost: (id, post) => dispatch(editPostAction(id, post)),
   	deletePost: (id) => dispatch(deletePostAction(id)),
-    handleSort: (val) => dispatch(setSortingAction(val))
+    handleSort: (val) => dispatch(setSortingAction(val)),
+    upVote: (id) => dispatch(upVotePostAction(id)),
+  	downVote: (id) => dispatch(downVotePostAction(id)),
   }
 }
 

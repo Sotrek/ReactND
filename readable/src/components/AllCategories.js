@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchAllPosts, editPostAction, fetchCategories, deletePostAction, setSortingAction } from '../actions'
+import { fetchAllPosts, editPostAction, fetchCategories, deletePostAction, setSortingAction,
+		 upVotePostAction, downVotePostAction } from '../actions'
 import { Link } from 'react-router-dom'
 import MainMenu from './MainMenu'
 
@@ -9,6 +10,12 @@ class AllCategories extends Component {
 	componentDidMount(){
 		this.props.getAllPosts();
 
+	}
+	upVoteClick(id){
+		this.props.upVote(id)
+	}
+	downVoteClick(id){
+		this.props.downVote(id)
 	}
 
 	render() {
@@ -49,6 +56,11 @@ class AllCategories extends Component {
 		    				<li key={post.id}>
 		    					<h2 onClick={()=> this.props.history.push(`/${post.category}/${post.id}`)}>{post.title}</h2>
 		    					<h3>Author: {post.author}</h3>
+		    					<div>
+		    						<span>{post.voteScore}</span>
+		    						<button onClick={()=> this.upVoteClick(post.id)}>Up Vote</button>
+									<button onClick={()=> this.downVoteClick(post.id)}>Down Vote</button>
+		    					</div>
 		    					<Link to={`/edit-post/${post.category}/${post.id}`}>Edit</Link>
 		    					<button onClick={() => this.props.deletePost(post.id)}>Delete</button>
 		    				</li>
@@ -74,7 +86,9 @@ const mapDispatchToProps = (dispatch) => {
   	editPost: (id, post) => dispatch(editPostAction(id, post)),
   	deletePost: (id) => dispatch(deletePostAction(id)),
     getCategories: () => dispatch(fetchCategories()),
-    handleSort: (val) => dispatch(setSortingAction(val))
+    handleSort: (val) => dispatch(setSortingAction(val)),
+    upVote: (id) => dispatch(upVotePostAction(id)),
+  	downVote: (id) => dispatch(downVotePostAction(id)),
   }
 }
 

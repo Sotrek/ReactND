@@ -70,3 +70,18 @@ export const getCategoryPosts = (category) => {
 	return fetch(`${BASE_URL}/${category}/posts`, { headers })
 	.then(response => response.json())
 }
+
+// PUT /posts/:id - for VotePost
+export const VotePost = (id, option) => {
+  return fetch(`${BASE_URL}/posts/${id}`, {
+    method: 'PUT',
+    headers: {
+      ...headers
+    },
+    body: JSON.stringify({
+      option: option
+    })
+  })
+  .then(response => response.json())
+  // .then(res => console.log(res))
+}
