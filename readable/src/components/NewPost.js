@@ -8,7 +8,7 @@ class NewPost extends Component {
 		title: '',
 		body: '',
 		author: '',
-		category: ''
+		category: '',
 	}
 
 	componentDidMount(){
@@ -26,7 +26,7 @@ class NewPost extends Component {
 		    title,
 		    body,
 		    author,
-		   	category
+		   	category,
 		  }
 		  const callback = ()=>{
 		  	this.props.history.push('/');

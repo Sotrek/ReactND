@@ -12,6 +12,10 @@ class Category extends Component {
 		const category = this.props.match.params.category
 		this.props.fetchCategoryPosts(category)
 	}
+	componentWillReceiveProps(){
+		const category = this.props.match.params.category
+		this.props.fetchCategoryPosts(category)
+	}
 	upVoteClick(id){
 		this.props.upVote(id)
 	}
@@ -92,7 +96,5 @@ const mapDispatchToProps = (dispatch) => {
   	downVote: (id) => dispatch(downVotePostAction(id)),
   }
 }
-
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Category);

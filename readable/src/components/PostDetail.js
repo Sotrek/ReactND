@@ -46,7 +46,7 @@ class PostDetail extends Component {
 					<h5>{category}</h5>
 					<p>{body}</p>
 					<div>
-						<span>{post.voteScore}</span>
+						<span>{post.voteScore != 0 ? post.voteScore : 0}</span>
 						<button onClick={()=> this.upVoteClick(id)}>Up Vote</button>
 						<button onClick={()=> this.downVoteClick(id)}>Down Vote</button>
 					</div>

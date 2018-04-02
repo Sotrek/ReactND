@@ -9,11 +9,12 @@ class AllCategories extends Component {
 
 	componentDidMount(){
 		this.props.getAllPosts();
-
 	}
+
 	upVoteClick(id){
 		this.props.upVote(id)
 	}
+
 	downVoteClick(id){
 		this.props.downVote(id)
 	}
@@ -91,7 +92,6 @@ const mapDispatchToProps = (dispatch) => {
   	downVote: (id) => dispatch(downVotePostAction(id)),
   }
 }
-
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllCategories);
