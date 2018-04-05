@@ -6,6 +6,7 @@ import NewPost from './NewPost'
 import EditPost from './EditPost'
 import Category from './Category'
 import PostDetail from './PostDetail'
+import NewComment from './NewComment'
 
 
 class App extends Component {
@@ -14,11 +15,17 @@ class App extends Component {
     return (
       <div className="App">
         <Switch>
+          <Route exact path="/" render={(props)=>(
+              <AllCategories {...props}/>
+          )}/>
           <Route exact path="/new-post" render={(props)=>(
               <NewPost {...props}/>
           )}/>
           <Route exact path="/edit-post/:category/:id" render={(props)=>(
               <EditPost {...props}/>
+          )}/>
+          <Route exact path="/new-comment" render={(props)=>(
+              <NewComment {...props}/>
           )}/>
           <Route exact path="/:category" render={(props)=>(
               <Category {...props}/>
@@ -26,9 +33,7 @@ class App extends Component {
           <Route exact path="/:category/:id" render={(props)=>(
               <PostDetail {...props}/>
           )}/>
-          <Route exact path="/" render={(props)=>(
-              <AllCategories {...props}/>
-          )}/>
+
         </Switch>
       </div>
     );

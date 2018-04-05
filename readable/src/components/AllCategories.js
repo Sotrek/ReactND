@@ -24,7 +24,7 @@ class AllCategories extends Component {
 	    console.log(this.props)
 	    return(
 	    	<div>
-	    		<MainMenu/>
+	    		<MainMenu {...this.props}/>
 		    	<div>
 	              <h2>Sort Posts By</h2>
 	              <ul>
@@ -69,7 +69,8 @@ class AllCategories extends Component {
 		    					<h2 onClick={()=> this.props.history.push(`/${post.category}/${post.id}`)}>{post.title}</h2>
 		    					<h3>Author: {post.author}</h3>
 		    					<div>
-		    						<span>{post.voteScore}</span>
+		    						<span>Comments Count: {post.commentCount}</span>
+									<span>Vote Score: {post.voteScore}</span>
 		    						<button onClick={()=> this.upVoteClick(post.id)}>Up Vote</button>
 									<button onClick={()=> this.downVoteClick(post.id)}>Down Vote</button>
 		    					</div>

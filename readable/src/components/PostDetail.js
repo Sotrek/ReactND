@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchPostAction, deletePostAction, upVotePostDetailAction, downVotePostDetailAction } from '../actions'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
+import NewComment from './NewComment'
+import CommentsList from './CommentsList'
 
 class PostDetail extends Component {
 	state = {
@@ -46,7 +48,8 @@ class PostDetail extends Component {
 					<h5>{category}</h5>
 					<p>{body}</p>
 					<div>
-						<span>{post.voteScore}</span>
+						<span>Comments Count: {post.commentCount}</span>
+						<span>Vote Score: {post.voteScore}</span>
 						<button onClick={()=> this.upVoteClick(id)}>Up Vote</button>
 						<button onClick={()=> this.downVoteClick(id)}>Down Vote</button>
 					</div>
@@ -59,6 +62,8 @@ class PostDetail extends Component {
 						Delete
 					</button>
 				</div>
+				<NewComment id={id} category={category} {...this.props}/>
+				<CommentsList id={id} />
 			</div>
 		)
 	}
@@ -79,4 +84,4 @@ const mapDispatchToProps = (dispatch) => {
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostDetail);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostDetail));

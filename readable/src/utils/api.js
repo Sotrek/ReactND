@@ -46,10 +46,8 @@ export const editPost = (id, post) => {
 
 // GET /posts/:id - for getPost
 export const getPost = (id) => {
-	// console.log(id)
   return fetch(`${BASE_URL}/posts/${id}`, { headers })
     .then(response => response.json())
-    // .then(res => console.log(res))
 }
 
 // DELETE /posts/:id for deletePost
@@ -65,7 +63,7 @@ export const deletePost = (id) => {
 
 }
 
-// GET /:category
+// GET /:category for getCategoryPosts
 export const getCategoryPosts = (category) => {
 	return fetch(`${BASE_URL}/${category}/posts`, { headers })
 	.then(response => response.json())
@@ -83,5 +81,36 @@ export const VotePost = (id, option) => {
     })
   })
   .then(response => response.json())
-  // .then(res => console.log(res))
+}
+
+
+// POST /comments - for addComment
+export const addComment = (comment) => {
+	return fetch(`${BASE_URL}/comments`, {
+		method: 'POST',
+		headers: {
+      		...headers
+    	},
+    	body: JSON.stringify({
+	      id: `${comment.id}`, timestamp: `${comment.timestamp}`, body: `${comment.body}`, author: `${comment.author}`, parentId: `${comment.parentId}`
+	    })
+    })
+    .then(response => response.json())
+}
+
+// GET /posts/:id/comments - for getComments
+export const getComments = (id) => {
+  return fetch(`${BASE_URL}/posts/${id}/comments`, { headers })
+    .then(response => response.json())
+}
+
+// DELETE /comments/:id - for deleteComment
+export const deleteComment = (id) => {
+  return fetch(`${BASE_URL}/comments/${id}`, {
+    method: 'DELETE',
+    headers: {
+      ...headers
+    },
+  })
+  .then(response => response.json())
 }

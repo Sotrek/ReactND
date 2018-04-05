@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchCategories } from '../actions'
-import { Link } from 'react-router-dom'
+import { fetchCategories, fetchCategoryPostsAction } from '../actions'
+import { Link, withRouter } from 'react-router-dom'
 
 
 class MainMenu extends Component {
@@ -21,11 +21,14 @@ class MainMenu extends Component {
 					<ul>
 
 						{ categories.map(category =>(
-							<Link to={`/${category.name}`} key={category.name}>
+							<button onClick={()=> {
+								this.props.history.push(`/${category.name}`);
+								this.props.fetchCategoryPosts(category.name)}}
+									key={category.name}>
 								<li key={category.name}>
 									{category.name}
 								</li>
-							</Link>
+							</button>
 						))}
 					</ul>
 				</div>
@@ -46,7 +49,8 @@ const mapStateToProps = ({ categories }) => ({
 const mapDispatchToProps = (dispatch) => {
   return {
     getCategories: () => dispatch(fetchCategories()),
+    fetchCategoryPosts: (category) => dispatch(fetchCategoryPostsAction(category)),
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainMenu);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MainMenu));

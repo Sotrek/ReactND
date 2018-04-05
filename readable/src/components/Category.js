@@ -12,10 +12,10 @@ class Category extends Component {
 		const category = this.props.match.params.category
 		this.props.fetchCategoryPosts(category)
 	}
-	componentWillReceiveProps(){
-		const category = this.props.match.params.category
-		this.props.fetchCategoryPosts(category)
-	}
+	// componentWillReceiveProps(){
+	// 	const category = this.props.match.params.category
+	// 	this.props.fetchCategoryPosts(category)
+	// }
 	upVoteClick(id){
 		this.props.upVote(id)
 	}
@@ -28,7 +28,7 @@ class Category extends Component {
 
 	    return(
 	    	<div>
-	    		<MainMenu/>
+	    		<MainMenu {...this.props}/>
 
 		    	<div>
 	              <h2>Sort Posts By</h2>
@@ -42,6 +42,15 @@ class Category extends Component {
 	                  >
 	                  	Date
 	                  </li>
+	                  <li onClick={() =>
+	                    this.props.handleSort(
+	                      this.props.sortBy === 'BY_VOTE_COUNT_HIGHEST'
+	                        ? 'BY_VOTE_COUNT_LOWEST'
+	                        : 'BY_VOTE_COUNT_HIGHEST'
+	                    )}
+	                  >
+	                  	Votes
+	                  </li>
 	              </ul>
 	            </div>
 		    	<div>
@@ -50,12 +59,14 @@ class Category extends Component {
 		    				posts.filter(post => post.category === this.props.match.params.category)
 			    				.sort((a, b) => {
 		    						switch (this.props.sortBy) {
+		    						  case 'BY_VOTE_COUNT_LOWEST':
+					                    return a.voteScore - b.voteScore
 					                  case 'BY_DATE_OLDEST':
 					                    return a.timestamp - b.timestamp
 					                  case 'BY_DATE_NEWEST':
 					                    return b.timestamp - a.timestamp
 					                  default:
-					                    return a.timestamp - b.timestamp
+					                    return b.voteScore - a.voteScore
 					                }
 					            })
 			    				.map(post =>
@@ -63,7 +74,8 @@ class Category extends Component {
 				    					<h2 onClick={()=> this.props.history.push(`/${post.category}/${post.id}`)}>{post.title}</h2>
 				    					<h3>Author: {post.author}</h3>
 				    					<div>
-				    						<span>{post.voteScore}</span>
+				    						<span>Comments Count: {post.commentCount}</span>
+											<span>Vote Score: {post.voteScore}</span>
 				    						<button onClick={()=> this.upVoteClick(post.id)}>Up Vote</button>
 											<button onClick={()=> this.downVoteClick(post.id)}>Down Vote</button>
 				    					</div>

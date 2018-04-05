@@ -1,5 +1,8 @@
 import { combineReducers } from 'redux'
-import { ADD_POST, GET_CATEGORIES, GET_ALL_POSTS, EDIT_POST, GET_POST, DELETE_POST, GET_CATEGORY_POSTS, SET_SORTING, UP_VOTE_POST, DOWN_VOTE_POST, UP_VOTE_POST_DETAIL, DOWN_VOTE_POST_DETAIL } from "../actions";
+import { ADD_POST, GET_CATEGORIES, GET_ALL_POSTS, EDIT_POST, GET_POST, DELETE_POST, GET_CATEGORY_POSTS, SET_SORTING,
+			UP_VOTE_POST, DOWN_VOTE_POST, UP_VOTE_POST_DETAIL, DOWN_VOTE_POST_DETAIL,
+			ADD_COMMENT, GET_COMMENTS, DELETE_COMMENT,
+		} from "../actions";
 
 
 
@@ -27,6 +30,7 @@ const posts = (state = [], action) =>{
 	    		post: action.post
 	    	}
 	    case DELETE_POST : {
+	    	console.log(state)
 	    	const { posts } = state;
 	    	const updatedState = posts.filter(post => post.id !== action.id)
 
@@ -110,8 +114,32 @@ const sortBy = (state = [], action) => {
 	}
 }
 
+const comments = (state = [], action) => {
+	switch(action.type) {
+		case ADD_COMMENT :
+			return {
+			  ...state,
+			  comment: action.comment
+			}
+		case GET_COMMENTS :
+		  return {
+		    ...state,
+		    comments: action.comments
+		  }
+		case DELETE_COMMENT :
+			console.log(state)
+			return {
+				...state,
+				comment: action.comment
+			}
+		default:
+			return state
+	}
+}
+
 export default combineReducers({
 	posts,
 	categories,
 	sortBy,
+	comments,
 })

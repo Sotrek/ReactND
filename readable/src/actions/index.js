@@ -1,4 +1,6 @@
-import { getAllCategories, addPost, getAllPosts, editPost, getPost, deletePost, getCategoryPosts, VotePost } from '../utils/api'
+import { getAllCategories, addPost, getAllPosts, editPost, getPost, deletePost, getCategoryPosts, VotePost,
+			addComment, getComments, deleteComment
+		} from '../utils/api'
 
 export const ADD_POST = 'ADD_POST'
 export const GET_CATEGORIES = 'GET_CATEGORIES'
@@ -12,6 +14,9 @@ export const UP_VOTE_POST = 'UP_VOTE_POST'
 export const DOWN_VOTE_POST = 'DOWN_VOTE_POST'
 export const UP_VOTE_POST_DETAIL = 'UP_VOTE_POST_DETAIL'
 export const DOWN_VOTE_POST_DETAIL = 'DOWN_VOTE_POST_POST_DETAIL'
+export const ADD_COMMENT = 'ADD_COMMENT'
+export const GET_COMMENTS = 'GET_COMMENTS'
+export const DELETE_COMMENT = 'DELETE_COMMENT'
 
 export const addPostAction = (post, callback) => dispatch => (
   addPost(post)
@@ -133,4 +138,35 @@ export const downVotePostDetailAction = (id) => dispatch => (
         id
       })
     })
+)
+
+export const addPostCommentAction = (comment) => dispatch => (
+	addComment(comment)
+    .then(comment => {
+      dispatch({
+        type: ADD_COMMENT,
+        comment
+      })
+    })
+)
+
+export const fetchCommentsAction = (id) => dispatch => (
+	getComments(id)
+	.then(comments => {
+		dispatch({
+			type: GET_COMMENTS,
+			comments
+		})
+	})
+)
+
+export const deletePostCommentsAction = (id) => dispatch => (
+	deleteComment(id)
+	.then(comment => {
+		console.log(comment)
+		dispatch({
+			type: DELETE_COMMENT,
+			comment
+		})
+	})
 )
