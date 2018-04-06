@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import { ADD_POST, GET_CATEGORIES, GET_ALL_POSTS, EDIT_POST, GET_POST, DELETE_POST, GET_CATEGORY_POSTS, SET_SORTING,
 			UP_VOTE_POST, DOWN_VOTE_POST, UP_VOTE_POST_DETAIL, DOWN_VOTE_POST_DETAIL,
-			ADD_COMMENT, GET_COMMENTS, DELETE_COMMENT, EDIT_COMMENT
+			ADD_COMMENT, GET_COMMENTS, DELETE_COMMENT, EDIT_COMMENT, UP_VOTE_COMMENT, DOWN_VOTE_COMMENT
 		} from "../actions";
 
 
@@ -138,6 +138,26 @@ const comments = (state = [], action) => {
 				...state,
 				comments: action.comments
 			}
+		 case UP_VOTE_COMMENT: {
+	      	const { comment=[] } = state;
+	      	console.log(comment)
+
+	     	comment.voteScore += 1;
+
+		    return {
+		        comment: comment
+		    }
+	    }
+	    case DOWN_VOTE_COMMENT: {
+		 	const { comment=[] } = state;
+	      	console.log(comment)
+
+	     	comment.voteScore -= 1;
+
+		    return {
+		        comment: comment
+		    }
+	    }
 		default:
 			return state
 	}

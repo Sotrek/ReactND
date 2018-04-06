@@ -1,5 +1,5 @@
 import { getAllCategories, addPost, getAllPosts, editPost, getPost, deletePost, getCategoryPosts, VotePost,
-			addComment, getComments, deleteComment, editComment
+			addComment, getComments, deleteComment, editComment, VoteComment
 		} from '../utils/api'
 
 export const ADD_POST = 'ADD_POST'
@@ -18,6 +18,8 @@ export const ADD_COMMENT = 'ADD_COMMENT'
 export const GET_COMMENTS = 'GET_COMMENTS'
 export const DELETE_COMMENT = 'DELETE_COMMENT'
 export const EDIT_COMMENT = 'EDIT_COMMENT'
+export const UP_VOTE_COMMENT = 'UP_VOTE_COMMENT'
+export const DOWN_VOTE_COMMENT = 'DOWN_VOTE_COMMENT'
 
 export const addPostAction = (post, callback) => dispatch => (
   addPost(post)
@@ -180,4 +182,24 @@ export const editCommentAction = (id, comment) => dispatch => (
 			comment
 		})
 	})
+)
+
+export const upVoteCommentAction = (id) => dispatch => (
+	VoteComment(id, "upVote")
+    .then((comment) => {
+      dispatch({
+        type: UP_VOTE_COMMENT,
+        id
+      })
+    })
+)
+
+export const downVoteCommentAction = (id) => dispatch => (
+	VoteComment(id, "downVote")
+    .then((comment) => {
+      dispatch({
+        type: DOWN_VOTE_COMMENT,
+        id
+      })
+    })
 )

@@ -127,3 +127,18 @@ export const editComment = (id, comment) => {
   // .then(res => console.log(res))
   .then(response => response.json())
 }
+
+// POST /comments/:id - for VoteComment
+export const VoteComment = (id, option) => {
+  return fetch(`${BASE_URL}/comments/${id}`, {
+    method: 'POST',
+    headers: {
+      ...headers
+    },
+    body: JSON.stringify({
+      option: option
+    })
+  })
+  .then(response => response.json())
+}
+
