@@ -114,3 +114,16 @@ export const deleteComment = (id) => {
   })
   .then(response => response.json())
 }
+
+// PUT /comments/:id - for editComment
+export const editComment = (id, comment) => {
+  return fetch(`${BASE_URL}/comments/${id}`, {
+    method: 'PUT',
+    headers: {
+      ...headers
+    },
+    body: JSON.stringify(comment)
+  })
+  // .then(res => console.log(res))
+  .then(response => response.json())
+}

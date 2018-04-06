@@ -7,6 +7,7 @@ import EditPost from './EditPost'
 import Category from './Category'
 import PostDetail from './PostDetail'
 import NewComment from './NewComment'
+import EditComment from './EditComment'
 
 
 class App extends Component {
@@ -26,6 +27,9 @@ class App extends Component {
           )}/>
           <Route exact path="/new-comment" render={(props)=>(
               <NewComment {...props}/>
+          )}/>
+          <Route exact path="/edit-comment/:id/:cid" render={(props)=>(
+              <EditComment {...props}/>
           )}/>
           <Route exact path="/:category" render={(props)=>(
               <Category {...props}/>

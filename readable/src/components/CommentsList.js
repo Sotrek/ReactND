@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchCommentsAction, deletePostCommentsAction } from '../actions'
+import { fetchCommentsAction, deletePostCommentsAction, fetchPostAction } from '../actions'
 import { withRouter } from 'react-router-dom'
 
 class CommentsList extends Component {
@@ -13,6 +13,7 @@ class CommentsList extends Component {
 	deleteCommentClick(id){
 		this.props.deleteComment(id)
 			.then(this.props.getComments(this.props.id))
+			.then(this.props.getPost(this.props.id))
 	}
 
 	render() {
@@ -29,6 +30,7 @@ class CommentsList extends Component {
 	    				<h5>{comment.author}</h5>
 	    				<div>
 	    					<button onClick={() => this.deleteCommentClick(comment.id)}>DELETE</button>
+	    					<button onClick={() => this.props.history.push(`../edit-comment/${comment.parentId}/${comment.id}`)}>EDIT</button>
 	    				</div>
 	    			</li>
 	    		))}
@@ -47,7 +49,8 @@ const mapStateToProps = ({ comments }) => ({
 const mapDispatchToProps = (dispatch) => {
   return {
   	getComments: (id) => dispatch(fetchCommentsAction(id)),
-  	deleteComment: (id) => dispatch(deletePostCommentsAction(id))
+  	deleteComment: (id) => dispatch(deletePostCommentsAction(id)),
+  	getPost: (id) => dispatch(fetchPostAction(id)),
   }
 }
 
