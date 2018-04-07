@@ -17,7 +17,7 @@ class PostDetail extends Component {
 
 		this.props.getPost(id)
 	      .then((post) => {
-	      	const { title=[], author=[], body=[], category=[], } = this.props.posts.post
+	      	const { title=[], author=[], body=[], category=[] } = this.props.posts.post
 	        this.setState({
 	          title,
 	          author,
@@ -32,13 +32,21 @@ class PostDetail extends Component {
 	downVoteClick(id){
 		this.props.downVote(id)
 	}
+
 	render(){
-		const { title, author, body, category, } = this.state
+		const { title, author, body, category } = this.state
 		const id = this.props.match.params.id
 		const { post={} } = this.props.posts
 		console.log(this.props)
 		return(
 			<div>
+			{ Object.keys(post).length === 0 ? (
+				<div>
+					<h1>404 - Page Not Found</h1>
+				</div>
+			) : (
+				<div>
+
 				<div>
 					<button onClick={()=>this.props.history.goBack()}>Back to posts</button>
 				</div>
@@ -57,6 +65,11 @@ class PostDetail extends Component {
 				<div>
 					<Link to={`/edit-post/${category}/${id}`}>Edit</Link>
 					<button onClick={() => this.props.deletePost(id)
+											.then(() => {
+										        this.setState({
+										          deleted: true
+										        })
+										    })
 											.then(()=>this.props.history.push('/'))
 					}>
 						Delete
@@ -64,6 +77,8 @@ class PostDetail extends Component {
 				</div>
 				<NewComment id={id} category={category} {...this.props}/>
 				<CommentsList id={id} />
+			</div>
+			)}
 			</div>
 		)
 	}

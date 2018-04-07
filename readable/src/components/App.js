@@ -8,6 +8,7 @@ import Category from './Category'
 import PostDetail from './PostDetail'
 import NewComment from './NewComment'
 import EditComment from './EditComment'
+import NotFound from './NotFound'
 
 
 class App extends Component {
@@ -37,7 +38,9 @@ class App extends Component {
           <Route exact path="/:category/:id" render={(props)=>(
               <PostDetail {...props}/>
           )}/>
-
+          <Route render={() =>(
+              <NotFound />
+          )}/>
         </Switch>
       </div>
     );
