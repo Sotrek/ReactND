@@ -56,7 +56,7 @@ class CommentsList extends Component {
 
 const mapStateToProps = ({ comments }) => ({
 	comments: comments,
-	comment: comments.comment,
+	comment: comments,
 })
 
 const mapDispatchToProps = (dispatch) => {

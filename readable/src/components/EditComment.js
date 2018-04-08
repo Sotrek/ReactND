@@ -36,7 +36,7 @@ class EditComment extends Component {
 
 	editCommentClick() {
 	    const { body, author } = this.state
-	    const { id, cid } = this.props.match.params
+	    const { cid } = this.props.match.params
 
 	    if (body && author ) {
 		  const _editComment = {

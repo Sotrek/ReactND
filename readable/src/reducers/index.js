@@ -31,7 +31,7 @@ const posts = (state = [], action) =>{
 	    	}
 	    case DELETE_POST : {
 	    	console.log(state)
-	    	const { posts } = state;
+	    	const { posts={} } = state;
 	    	const updatedState = posts.filter(post => post.id !== action.id)
 
 	    	return {
@@ -139,23 +139,25 @@ const comments = (state = [], action) => {
 				comments: action.comments
 			}
 		 case UP_VOTE_COMMENT: {
-	      	const { comment=[] } = state;
-	      	console.log(comment)
+	      	const { comments={} } = state;
+	      	const currentCommentUpVote = [...state.comments]
 
-	     	comment.voteScore += 1;
+	      	const index = comments.findIndex(comment => comment.id === action.id)
 
+	      	currentCommentUpVote[index].voteScore += 1
 		    return {
-		        comment: comment
+		        comments: [...currentCommentUpVote]
 		    }
 	    }
 	    case DOWN_VOTE_COMMENT: {
-		 	const { comment=[] } = state;
-	      	console.log(comment)
+		 	const { comments={} } = state;
+	      	const currentCommentDownVote = [...state.comments]
 
-	     	comment.voteScore -= 1;
+	      	const index = comments.findIndex(comment => comment.id === action.id)
 
+	      	currentCommentDownVote[index].voteScore -= 1
 		    return {
-		        comment: comment
+		        comments: [...currentCommentDownVote]
 		    }
 	    }
 		default:
