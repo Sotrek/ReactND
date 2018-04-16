@@ -26,3 +26,223 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+
+.main-menu {
+  position: relative;
+  display:block;
+  width:100%;
+  max-width: 1000px;
+  min-width:400px;
+  min-height:150px;
+  margin: 0 auto;
+  padding:20px 0px;
+}
+
+.logo {
+  border:1px solid #000;
+  background-color:rgba(204,204,204,0.5);
+  width:100px;
+  margin:0 auto;
+}
+
+.logo a {
+  font-size:20px;
+  color:#000;
+  text-decoration: none;
+}
+
+.categories-menu {
+  width:400px;
+  height:80px;
+  margin:0 auto;
+}
+
+.categories-menu ul {
+  width:100%;
+  height:100%;
+  padding:0px;
+}
+
+.categories-menu ul button {
+  list-style: none;
+  width:100px;
+  height:50px;
+  margin-right:50px;
+  font-size:20px;
+  cursor:pointer;
+}
+
+.categories-menu ul button:last-child {
+  margin-right:0px;
+}
+
+.add-post a {
+  font-size:18px;
+  color:#000;
+  text-decoration: none;
+}
+
+.add-post a:hover{
+  text-decoration: underline;
+}
+
+.sort-by {
+  position:relative;
+  display:block;
+  width:250px;
+  height:25px;
+  margin:0 auto;
+  vertical-align: middle;
+}
+
+.sort-by h2 {
+  font-size:15px;
+  display:inline-block;
+  float: left;
+  margin:0px;
+}
+
+.sort-by ul {
+  display:inline-block;
+  float: left;
+  margin:0px;
+  padding-left:15px;
+}
+
+.sort-by ul li {
+  display:inline-block;
+  float:left;
+  padding:0px 15px;
+}
+
+.sort-by ul li:hover{
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.posts-list ul {
+  list-style: none;
+  width:400px;
+  text-align: left;
+  margin:0 auto;
+  padding:0px;
+}
+
+.posts-list ul li {
+  margin:40px 0px;
+}
+
+.posts-list ul li h2 {
+  font-size:20px;
+}
+
+.posts-list ul li h3 {
+  margin-bottom:10px;
+  font-weight:normal;
+  font-size:17px;
+}
+
+.posts-list ul li h3:hover {
+  text-decoration: underline;
+  cursor:pointer;
+}
+
+.posts-list ul li span {
+  float:left;
+  display:block;
+  clear: both;
+}
+
+.comments-votes {
+  margin-top:30px;
+  position: relative;
+  display: block;
+  clear: both;
+  height: 65px;
+  text-align: left;
+}
+
+.comments-votes span {
+  display:block;
+  clear:both;
+}
+
+.comments-votes button {
+  float:right;
+  margin-left:15px;
+}
+
+.vote-buttons { margin-top:-35px;}
+
+.post-mod {
+  position:relative;
+  display:block;
+  width:200px;
+  height:50pxs;
+}
+
+.post-mod a button {
+  position:relative;
+  display:inline-block;
+  float:left;
+}
+
+.post-mod button {
+  position:relative;
+  display:inline-block;
+  float:left;
+  margin-right:10px;
+}
+
+.new-post-form {
+  position:relative;
+  display:block;
+  max-width:500px;
+  margin:0 auto;
+  height:auto;
+}
+
+.new-post-form label {
+  display:block;
+  float:left;
+  clear:both;
+  text-align:left;
+  margin-bottom:40px;
+}
+
+.new-post-form input, .new-post-form textarea, .new-post-form select  {
+  margin-left:20px;
+}
+
+.new-post-form .new-post-submit {
+  position:relative;
+  display:block;
+  float:left;
+  clear:both;
+  width:100px;
+  text-align: left;
+}
+
+.new-post-form .new-post-submit input {
+  margin-left:0px;
+}
+
+.new-comment-area {
+  position:relative;
+  display:block;
+  width:400px;
+  height:330px;
+  margin:40px auto 0px;
+}
+
+.post-detail {
+  position:relative;
+  display:block;
+  width:400px;
+  margin:0 auto;
+}
+
+.post-section {
+  text-align:left;
+}

@@ -10,13 +10,8 @@ class NewComment extends Component {
 		author: '',
 	}
 
-	componentDidMount(){
-
-	}
-
 	newCommentClick() {
 	    const { body, author } = this.state
-	    console.log(this.state)
 
 	    if (body && author) {
 	      const postId = this.props.id
@@ -54,13 +49,13 @@ class NewComment extends Component {
 	render() {
 
 	    return(
-	    	<div>
+	    	<div className="new-comment-area">
 	    		<div>
 	    			<h3> Add a comment </h3>
 	    		</div>
 	    		<div>
-				   <form className="new-comment-form">
-						<label className="new-comment-body">
+				   <form className="new-post-form">
+						<label className="new-post-body">
 							Body:
 							<textarea
 				              placeholder="Body"
@@ -71,7 +66,7 @@ class NewComment extends Component {
 				              rows="10" />
 						</label>
 
-						<label className="new-comment-author">
+						<label className="new-post-author">
 							Author:
 							<input
 							  type="text"
@@ -81,9 +76,9 @@ class NewComment extends Component {
 							  value={this.state.author} />
 						</label>
 
-				        <div className="new-comment-submit">
+				        <div className="new-post-submit">
 				          <input
-				            className="new-comment-button"
+				            className="new-post-button"
 				            type="button"
 				            value="Submit"
 				            onClick={this.newCommentClick.bind(this)} />

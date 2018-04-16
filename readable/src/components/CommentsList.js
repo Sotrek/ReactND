@@ -26,22 +26,24 @@ class CommentsList extends Component {
 
 	render() {
 		const { comments=[] } = this.props.comments
-		console.log(this.props.comments)
-	    return(
-	    	<div>
+
+		return(
+	    	<div className="posts-list comments-list">
 	    		<ul>
 	    		{ comments
 	    			.filter(comment => !comment.deleted)
 	    			.map( comment => (
 	    			<li key={comment.id}>
-	    				<p>{comment.body}</p>
-	    				<h5>{comment.author}</h5>
-	    				<span>Votes Score: {comment.voteScore}</span>
-	    				<div>
-	    					<button onClick={()=> this.upVoteClick(comment.id)}>Up Vote</button>
-	    					<button onClick={()=> this.downVoteClick(comment.id)}>Down Vote</button>
+	    				<span>Comment: {comment.body}</span>
+	    				<span>Author: {comment.author}</span>
+	    				<div className="comments-votes">
+		    				<h5>Votes Score: {comment.voteScore}</h5>
+		    				<div className="vote-buttons">
+		    					<button onClick={()=> this.upVoteClick(comment.id)}>Up Vote</button>
+		    					<button onClick={()=> this.downVoteClick(comment.id)}>Down Vote</button>
+		    				</div>
 	    				</div>
-	    				<div>
+	    				<div className="post-mod">
 	    					<button onClick={() => this.deleteCommentClick(comment.id)}>DELETE</button>
 	    					<button onClick={() => this.props.history.push(`../edit-comment/${comment.parentId}/${comment.id}`)}>EDIT</button>
 	    				</div>

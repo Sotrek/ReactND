@@ -40,45 +40,49 @@ class PostDetail extends Component {
 		console.log(this.props)
 		return(
 			<div>
-			{ Object.keys(post).length === 0 ? (
-				<div>
-					<h1>404 - Page Not Found</h1>
-				</div>
-			) : (
-				<div>
-
-				<div>
-					<button onClick={()=>this.props.history.goBack()}>Back to posts</button>
-				</div>
-				<div>
-					<h1>{title}</h1>
-					<h3>{author}</h3>
-					<h5>{category}</h5>
-					<p>{body}</p>
+				{ Object.keys(post).length === 0 ? (
 					<div>
-						<span>Comments Count: {post.commentCount}</span>
-						<span>Vote Score: {post.voteScore}</span>
-						<button onClick={()=> this.upVoteClick(id)}>Up Vote</button>
-						<button onClick={()=> this.downVoteClick(id)}>Down Vote</button>
+						<h1>404 - Page Not Found</h1>
 					</div>
+				) : (
+					<div className="post-detail">
+
+					<div>
+						<button onClick={()=>this.props.history.goBack()}>Back to posts</button>
+					</div>
+					<div>
+						<div className="post-section">
+							<h3>Title: {title}</h3>
+							<h5>Author: {author}</h5>
+							<h5>Category: {category}</h5>
+							<p>{body}</p>
+						</div>
+						<div className="comments-votes">
+							<h5>Comments Count: {post.commentCount}</h5>
+							<h5>Vote Score: {post.voteScore}</h5>
+							<div className="vote-buttons">
+								<button onClick={()=> this.upVoteClick(id)}>Up Vote</button>
+								<button onClick={()=> this.downVoteClick(id)}>Down Vote</button>
+							</div>
+						</div>
+					</div>
+					<div className="post-mod">
+						<Link to={`/edit-post/${category}/${id}`}><button>Edit</button></Link>
+						<button onClick={() => this.props.deletePost(id)
+												.then(() => {
+											        this.setState({
+											          deleted: true
+											        })
+											    })
+												.then(()=>this.props.history.push('/'))
+						}>
+							Delete
+						</button>
+					</div>
+					<NewComment id={id} category={category} {...this.props}/>
+					<CommentsList id={id} />
 				</div>
-				<div>
-					<Link to={`/edit-post/${category}/${id}`}>Edit</Link>
-					<button onClick={() => this.props.deletePost(id)
-											.then(() => {
-										        this.setState({
-										          deleted: true
-										        })
-										    })
-											.then(()=>this.props.history.push('/'))
-					}>
-						Delete
-					</button>
-				</div>
-				<NewComment id={id} category={category} {...this.props}/>
-				<CommentsList id={id} />
-			</div>
-			)}
+				)}
 			</div>
 		)
 	}

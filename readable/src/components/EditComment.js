@@ -13,25 +13,16 @@ class EditComment extends Component {
 
 		this.props.getComments(id)
 			.then(() => {
-		      	// console.log(this.props)
 		      	const commentsArray = this.props.comments
-		      	// console.log(commentsArray[0].id)
 		      	const { cid } = this.props.match.params
 		      	const filteredComment = commentsArray
 		      		.filter(comment => comment.id === cid)
-		      		// console.log(filteredComment)
 		      	const { author, body } = filteredComment[0]
 		        this.setState({
 		          author,
 		          body,
 		        })
 		      })
-
-		console.log(this.props.match.params)
-		console.log(this.props)
-		// const { comment } = this.props.comments
-	 //    this.props.editComment(id, comment)
-
 	}
 
 	editCommentClick() {
@@ -68,39 +59,40 @@ class EditComment extends Component {
 	render() {
 
 	    return(
-	      <form className="new-comment-form">
+		    <div>
+		    	<h1>Edit this Comment</h1>
+		      <form className="new-post-form">
 
-			<label className="new-comment-body">
-				Body:
-				<textarea
-	              placeholder="Body"
-	              onChange={(e) => this.bodyChange(e)}
-	              value={this.state.body}
-	              name="body"
-	              id=""
-	              rows="10" />
-			</label>
+				<label className="new-post-body">
+					Body:
+					<textarea
+		              placeholder="Body"
+		              onChange={(e) => this.bodyChange(e)}
+		              value={this.state.body}
+		              name="body"
+		              id=""
+		              rows="10" />
+				</label>
 
-			<label className="new-comment-author">
-				Author:
-				<input
-				  type="text"
-				  placeholder="Author"
-				  name="author"
-				  onChange={(e) => this.authorChange(e)}
-				  value={this.state.author} />
-			</label>
+				<label className="new-post-author">
+					Author:
+					<input
+					  type="text"
+					  placeholder="Author"
+					  name="author"
+					  onChange={(e) => this.authorChange(e)}
+					  value={this.state.author} />
+				</label>
 
-
-
-	        <div className="new-comment-submit">
-	          <input
-	            className="new-comment-button"
-	            type="button"
-	            value="Submit"
-	            onClick={this.editCommentClick.bind(this)} />
-	        </div>
-	      </form>
+		        <div className="new-post-submit">
+		          <input
+		            className="new-post-button"
+		            type="button"
+		            value="Submit"
+		            onClick={this.editCommentClick.bind(this)} />
+		        </div>
+		      </form>
+		    </div>
 	    )
 	}
 }

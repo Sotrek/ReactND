@@ -124,7 +124,6 @@ export const editComment = (id, comment) => {
     },
     body: JSON.stringify(comment)
   })
-  // .then(res => console.log(res))
   .then(response => response.json())
 }
 

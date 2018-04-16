@@ -7,7 +7,6 @@ import { ADD_POST, GET_CATEGORIES, GET_ALL_POSTS, EDIT_POST, GET_POST, DELETE_PO
 
 
 const posts = (state = [], action) =>{
-	console.log(action)
 	switch(action.type) {
 		case ADD_POST :
 			return {
@@ -30,7 +29,6 @@ const posts = (state = [], action) =>{
 	    		post: action.post
 	    	}
 	    case DELETE_POST : {
-	    	console.log(state)
 	    	const { posts={} } = state;
 	    	const updatedState = posts.filter(post => post.id !== action.id)
 
@@ -67,7 +65,6 @@ const posts = (state = [], action) =>{
 	    }
 	     case UP_VOTE_POST_DETAIL: {
 	      	const { post=[] } = state;
-	      	console.log(post)
 
 	     	post.voteScore += 1;
 
@@ -77,7 +74,6 @@ const posts = (state = [], action) =>{
 	    }
 	    case DOWN_VOTE_POST_DETAIL: {
 		 	const { post=[] } = state;
-	      	console.log(post)
 
 	     	post.voteScore -= 1;
 
@@ -127,7 +123,6 @@ const comments = (state = [], action) => {
 		    comments: action.comments
 		  }
 		case DELETE_COMMENT :
-			console.log(state)
 			return {
 				...state,
 				comment: action.comment

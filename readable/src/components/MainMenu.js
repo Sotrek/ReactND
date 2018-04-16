@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchCategories, fetchCategoryPostsAction } from '../actions'
 import { Link, withRouter } from 'react-router-dom'
+import '../App.css';
+
 
 
 class MainMenu extends Component {
@@ -13,11 +15,11 @@ class MainMenu extends Component {
 		const { categories=[] } = this.props.categories
 
 		return(
-			<div>
-				<div>
+			<div className="main-menu">
+				<div className="logo">
 					<Link to={`/`}> Readable </Link>
 				</div>
-				<div>
+				<div className="categories-menu">
 					<ul>
 
 						{ categories.map(category =>(
@@ -32,8 +34,8 @@ class MainMenu extends Component {
 						))}
 					</ul>
 				</div>
-				<div>
-		    		<Link to={`/new-post/`}>+ ADD POST</Link>
+				<div className="add-post">
+		    		<Link to={`/new-post/`}>+ ADD A POST</Link>
 		    	</div>
 			</div>
 		)

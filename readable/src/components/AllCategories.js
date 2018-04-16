@@ -21,11 +21,10 @@ class AllCategories extends Component {
 
 	render() {
 	    const { posts=[] } = this.props.posts
-	    console.log(this.props)
 	    return(
 	    	<div>
 	    		<MainMenu {...this.props}/>
-		    	<div>
+		    	<div className="sort-by">
 	              <h2>Sort Posts By</h2>
 	              <ul>
 	                  <li onClick={() =>
@@ -48,9 +47,8 @@ class AllCategories extends Component {
 	                  </li>
 	              </ul>
 	            </div>
-		    	<div>
+		    	<div className="posts-list">
 		    		<ul>
-	    				{/*console.log(posts)*/}
 	    				{posts.filter(post => !post.deleted)
 	    					.sort((a, b) => {
 	    						switch (this.props.sortBy) {
@@ -66,16 +64,20 @@ class AllCategories extends Component {
 				            })
 						  	.map(post =>
 		    				<li key={post.id}>
-		    					<h2 onClick={()=> this.props.history.push(`/${post.category}/${post.id}`)}>{post.title}</h2>
-		    					<h3>Author: {post.author}</h3>
-		    					<div>
+		    					<h3 onClick={()=> this.props.history.push(`/${post.category}/${post.id}`)}>{post.title}</h3>
+		    					<span>Author: {post.author}</span>
+		    					<div className="comments-votes">
 		    						<span>Comments Count: {post.commentCount}</span>
 									<span>Vote Score: {post.voteScore}</span>
-		    						<button onClick={()=> this.upVoteClick(post.id)}>Up Vote</button>
-									<button onClick={()=> this.downVoteClick(post.id)}>Down Vote</button>
+		    						<div className="vote-buttons">
+		    							<button onClick={()=> this.upVoteClick(post.id)}>Up Vote</button>
+										<button onClick={()=> this.downVoteClick(post.id)}>Down Vote</button>
+									</div>
 		    					</div>
-		    					<Link to={`/edit-post/${post.category}/${post.id}`}>Edit</Link>
-		    					<button onClick={() => this.props.deletePost(post.id)}>Delete</button>
+		    					<div className="post-mod">
+		    						<Link to={`/edit-post/${post.category}/${post.id}`}><button>Edit</button></Link>
+		    						<button onClick={() => this.props.deletePost(post.id)}>Delete</button>
+		    					</div>
 		    				</li>
 			    			)
 	    				}

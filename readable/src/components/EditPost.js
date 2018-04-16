@@ -18,7 +18,6 @@ class EditPost extends Component {
 
 	    this.props.getPost(id)
 	      .then((post) => {
-	      	// console.log(this.props.posts.post)
 	      	const { title, author, body, category } = this.props.posts.post
 	        this.setState({
 	          id,
@@ -69,62 +68,64 @@ class EditPost extends Component {
 	    const { categories=[] } = this.props.categories
 
 	    return(
-	      <form className="new-post-form">
+	    	<div>
+	    	<h1>Edit this post</h1>
+		      <form className="new-post-form">
 
-			<label className="new-post-title">
-				Title:
-				<input
-				  type="text"
-				  placeholder="Title"
-				  name="title"
-				  onChange={(e) => this.titleChange(e)}
-				  value={this.state.title} />
-			</label>
+				<label className="new-post-title">
+					Title:
+					<input
+					  type="text"
+					  placeholder="Title"
+					  name="title"
+					  onChange={(e) => this.titleChange(e)}
+					  value={this.state.title} />
+				</label>
 
-			<label className="new-post-body">
-				Body:
-				<textarea
-	              placeholder="Body"
-	              onChange={(e) => this.bodyChange(e)}
-	              value={this.state.body}
-	              name="body"
-	              id=""
-	              rows="10" />
-			</label>
+				<label className="new-post-body">
+					Body:
+					<textarea
+		              placeholder="Body"
+		              onChange={(e) => this.bodyChange(e)}
+		              value={this.state.body}
+		              name="body"
+		              id=""
+		              rows="10" />
+				</label>
 
-			<label className="new-post-author">
-				Author:
-				<input
-				  type="text"
-				  placeholder="Author"
-				  name="author"
-				  onChange={(e) => this.authorChange(e)}
-				  value={this.state.author} />
-			</label>
+				<label className="new-post-author">
+					Author:
+					<input
+					  type="text"
+					  placeholder="Author"
+					  name="author"
+					  onChange={(e) => this.authorChange(e)}
+					  value={this.state.author} />
+				</label>
 
-	        <label className="new-post-category">
-	          	Categories:
-	            <select
-	              placeholder="Select a Category"
-	              value={this.state.category}
-	              onChange={this.categoryChange}>
-	              	{categories.map(category => (
-				        <option
-				          key={category.name}
-				          value={category.name}>{category.name}</option>
-				      ))}
-	            </select>
-	        </label>
+		        <label className="new-post-category">
+		          	Categories:
+		            <select
+		              placeholder="Select a Category"
+		              value={this.state.category}
+		              onChange={this.categoryChange}>
+		              	{categories.map(category => (
+					        <option
+					          key={category.name}
+					          value={category.name}>{category.name}</option>
+					      ))}
+		            </select>
+		        </label>
 
-
-	        <div className="new-post-submit">
-	          <input
-	            className="new-post-button"
-	            type="button"
-	            value="Submit"
-	            onClick={this.editPostClick.bind(this)} />
-	        </div>
-	      </form>
+		        <div className="new-post-submit">
+		          <input
+		            className="new-post-button"
+		            type="button"
+		            value="Submit"
+		            onClick={this.editPostClick.bind(this)} />
+		        </div>
+		      </form>
+		   </div>
 	    )
 	}
 }
