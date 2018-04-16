@@ -35,6 +35,7 @@ npm run build
 ## Built With
 
 * [React] (https://reactjs.org/)
+* [Redux] (https://redux.js.org/introduction)
 
 ## Authors
 
