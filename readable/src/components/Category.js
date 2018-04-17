@@ -69,7 +69,7 @@ class Category extends Component {
 				    					<h3 onClick={()=> this.props.history.push(`/${post.category}/${post.id}`)}>{post.title}</h3>
 				    					<span>Author: {post.author}</span>
 				    					<div className="comments-votes">
-				    						<span>Comments Count: {post.commentCount}</span>
+				    						<span>Comments Count: { post.commentCount < 0 ? 0 : post.commentCount}</span>
 											<span>Vote Score: {post.voteScore}</span>
 											<div className="vote-buttons">
 				    							<button onClick={()=> this.upVoteClick(post.id)}>Up Vote</button>

@@ -58,7 +58,7 @@ class PostDetail extends Component {
 							<p>{body}</p>
 						</div>
 						<div className="comments-votes">
-							<h5>Comments Count: {post.commentCount}</h5>
+							<h5>Comments Count: { post.commentCount < 0 ? 0 : post.commentCount}</h5>
 							<h5>Vote Score: {post.voteScore}</h5>
 							<div className="vote-buttons">
 								<button onClick={()=> this.upVoteClick(id)}>Up Vote</button>
