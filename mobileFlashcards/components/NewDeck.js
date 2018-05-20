@@ -21,19 +21,6 @@ export default class NewDeck extends Component {
 		storeDeckTitle(this.state.title);
 
 		this.toDetail();
-
-		// () => this.props.navigation.navigate('Home')
-		// getDeck(this.state.title)
-		// 	.then((data) => this.props.navigation.dispatch('DeckDetail', { deck: data }))
-			// .then((data) => alert(JSON.stringify(data)))
-		// getDecks()
-		// 	.then((data) => this.props.navigation.navigate('DeckDetail', {deck: JSON.parse(data)[this.state.title]}))
-
-			// this.props.navigation.navigate('DeckDetailView', { deck: JSON.parse(data)[this.state.input] })
-			// .catch((error)=>{
-			//      console.log("Api call error NewDeck");
-			//      alert(error.message);
-			//   });
 	}
 
 	render() {

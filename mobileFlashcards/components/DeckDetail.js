@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity} from 'react-native'
 import { getDeck } from '../utils/helpers'
+
+
 export default class DeckDetail extends Component {
 	componentDidMount(){
 		console.log('PROPS IN DECK DETAIL', this.props)
@@ -17,6 +19,10 @@ export default class DeckDetail extends Component {
 		this.props.navigation.navigate('AddCard',{title: deckTitle, questions: deckQuestions});
 	}
 
+	playQuiz = () => {
+		this.props.navigation.navigate('AddCard',{title: deckTitle, questions: deckQuestions});
+	}
+
 	render(){
 		const deckTitle = this.props.navigation.state.params.deckDetail.title;
 		const cardsCount  = this.props.navigation.state.params.deckDetail.questions ? this.props.navigation.state.params.deckDetail.questions.length : 0;
@@ -28,6 +34,11 @@ export default class DeckDetail extends Component {
 				<View style={{flex:1}}>
 					<TouchableOpacity onPress={() => {this.addCard()}}>
 						<Text>Add Card</Text>
+					</TouchableOpacity>
+				</View>
+				<View style={{flex:1}}>
+					<TouchableOpacity onPress={() => {this.playQuiz()}}>
+						<Text>Play Quiz</Text>
 					</TouchableOpacity>
 				</View>
 			</View>

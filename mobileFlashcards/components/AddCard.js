@@ -19,11 +19,7 @@ export default class AddCard extends Component {
 		addCardToDeck(title, card)
 		console.log('This Props - ADD CARD', this.props)
 
-		// getDeck(title)
-		// 	.then((deck)=> (console.log(JSON.stringify(deck))))
-		// 	console.log('This STaTe Deck', this.state.deck)
-
-		this.props.navigation.navigate('DeckDetail')
+		this.props.navigation.navigate('DeckDetail', { title: title })
 	}
 
 	render(){
