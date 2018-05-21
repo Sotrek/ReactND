@@ -11,7 +11,7 @@ export function getDecks () {
 
 export function getDeck(title) {
   return getDecks().then((decks) => decks[title])
-  			// .then((res) => console.log(JSON.stringify('helpers', res)))
+  			// .then((res) => console.log('helpers', JSON.stringify(res)))
 }
 
 export function storeDeckTitle(title) {

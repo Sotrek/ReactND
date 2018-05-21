@@ -5,22 +5,16 @@ import { getDeck, getDecks } from '../utils/helpers'
 
 export default class DeckDetail extends Component {
 	componentDidMount(){
-		console.log('state received',this.props.navigation.state)
-		// getDecks()
-		// 	// .then((deck)=> ('DID MOUNT', console.log(JSON.stringify(deck))))
-		// 	.catch((error)=>{
-		// 	     console.log("Api call error DeckDetail");
-		// 	     alert(error.message);
-		// 	  });
+		// console.log('PROPS IN DECK DETAIL', this.props)
+		// const deckTitle = this.props.navigation.state.params.deckDetail.title;
+		getDecks()
+			.then((deck)=> (console.log('getDecks -- did mount', JSON.stringify(deck))))
 	}
 	componentWillUpdate(){
-		console.log('state received - update',this.props.navigation.state)
-		// getDecks()
-		// 	// .then((deck)=> ('WILL UPDATE', console.log(JSON.stringify(deck))))
-		// 	.catch((error)=>{
-		// 	     console.log("Api call error DeckDetail");
-		// 	     alert(error.message);
-		// 	  });
+		console.log('there was an update')
+		const deckTitle = this.props.navigation.state.params.deckDetail.title;
+		getDecks()
+			.then((deck)=> (console.log('getDecks -- update', JSON.stringify(deck))))
 	}
 
 	addCard = () => {

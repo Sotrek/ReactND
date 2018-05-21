@@ -16,9 +16,9 @@ export default class AddCard extends Component {
 		const title = this.props.navigation.state.params.title
 
 		addCardToDeck(title, card)
-		console.log('This Props - ADD CARD', this.props)
+		// console.log('This Props - ADD CARD', this.props)
 
-		this.props.navigation.navigate('DeckDetail')
+		this.props.navigation.navigate('DeckDetail', {title: title})
 	}
 
 	render(){

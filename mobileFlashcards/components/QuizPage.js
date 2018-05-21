@@ -19,8 +19,8 @@ export default class QuizPage extends Component {
     const {deck} = this.props.navigation.state.params
     const questions = deck.questions
     const count = questions.length
-    // console.log('questions QUIZPAGE', questions)
-    // console.log('COUNT', count)
+    console.log('questions QUIZPAGE', questions)
+    console.log('COUNT', count)
     this.setState({ questions, count })
   }
 
@@ -62,7 +62,7 @@ export default class QuizPage extends Component {
     console.log('CARDDDd', card)
     console.log('the state', this.state)
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1}}>
         { !this.state.complete ? (
           <View style={{ flex: 1, justifyContent: 'flex-start'}}>
             <View>
