@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { getDeck } from '../utils/helpers'
+import { white, black, gray } from '../utils/colors'
 
 export default class DeckListDetail extends Component {
   componentDidMount(){
@@ -17,20 +18,23 @@ export default class DeckListDetail extends Component {
 		const { deck } = this.props
 
 		return (
-              <TouchableOpacity style={{flex:1}} onPress={() => {this.goToDetail()} }>
-                  <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                    <Text>
+              <TouchableOpacity onPress={() => {this.goToDetail()} }>
+                  <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
+                    <Text style={{color:black}}>
                       { deck.title === '' ? 'Undefined' : deck.title }
                     </Text>
                   </View>
-                  <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                    <Text>
+                  <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
+                    <Text style={{color:gray}}>
                       { deck.questions ? deck.questions.length : '' }
                     </Text>
 
                   </View>
               </TouchableOpacity>
-
       )
 	}
 }
+
+const styles = StyleSheet.create({
+
+})

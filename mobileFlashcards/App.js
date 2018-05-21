@@ -5,21 +5,10 @@ import DeckList from './components/DeckList'
 import NewDeck from './components/NewDeck'
 import DeckDetail from './components/DeckDetail'
 import AddCard from './components/AddCard'
+import QuizPage from './components/QuizPage'
 import { Constants } from 'expo'
-import { purple, white } from './utils/colors'
-import { createStore } from 'redux'
-import { Provider } from 'react-redux'
-import reducer from './reducers'
+import { purple, white, gray } from './utils/colors'
 
-
-
-function MobileFlashcardsStatusBar ({backgroundColor, ...props}) {
-  return (
-    <View style={{ backgroundColor, height: Constants.statusBarHeight }}>
-      <StatusBar translucent backgroundColor={backgroundColor} {...props} />
-    </View>
-  )
-}
 
 const Tabs = createMaterialTopTabNavigator({
   DeckList: {
@@ -40,6 +29,7 @@ const Tabs = createMaterialTopTabNavigator({
   },
   tabBarOptions: {
     activeTintColor: Platform.OS === 'ios' ? purple : white,
+    inactiveTintColor: gray,
     style: {
       height: 56,
       backgroundColor: Platform.OS === 'ios' ? white : purple,
@@ -81,6 +71,15 @@ const MainNavigator = createStackNavigator({
         backgroundColor: purple,
       }
     }
+  },
+  QuizPage: {
+    screen: QuizPage,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: purple,
+      }
+    }
   }
 })
 
@@ -89,12 +88,9 @@ export default class App extends Component {
 
   render() {
     return (
-      <Provider store={createStore(reducer)}>
         <View style={{flex: 1}}>
-          <MobileFlashcardsStatusBar barStyle="light-content" />
           <MainNavigator style={{backgroundColor: 'blue'}} />
         </View>
-      </Provider>
     )
   }
 }

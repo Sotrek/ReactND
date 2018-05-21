@@ -11,7 +11,7 @@ export default class NewDeck extends Component {
 	}
 
 	toDetail = () => {
-		console.log(this.state)
+		// console.log(this.state)
 		const currentState = this.state
 	    this.props.navigation.navigate('DeckDetail',{ deckDetail: currentState })
 	    this.setState({title:"", questions:[]})

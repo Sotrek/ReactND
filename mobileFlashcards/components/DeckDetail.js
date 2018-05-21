@@ -1,16 +1,26 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity} from 'react-native'
-import { getDeck } from '../utils/helpers'
+import { getDeck, getDecks } from '../utils/helpers'
 
 
 export default class DeckDetail extends Component {
 	componentDidMount(){
-		console.log('PROPS IN DECK DETAIL', this.props)
+		console.log('state received',this.props.navigation.state)
+		// getDecks()
+		// 	// .then((deck)=> ('DID MOUNT', console.log(JSON.stringify(deck))))
+		// 	.catch((error)=>{
+		// 	     console.log("Api call error DeckDetail");
+		// 	     alert(error.message);
+		// 	  });
 	}
 	componentWillUpdate(){
-		const deckTitle = this.props.navigation.state.params.deckDetail.title;
-		getDeck(deckTitle)
-			.then((deck)=> (console.log(JSON.stringify(deck))))
+		console.log('state received - update',this.props.navigation.state)
+		// getDecks()
+		// 	// .then((deck)=> ('WILL UPDATE', console.log(JSON.stringify(deck))))
+		// 	.catch((error)=>{
+		// 	     console.log("Api call error DeckDetail");
+		// 	     alert(error.message);
+		// 	  });
 	}
 
 	addCard = () => {
@@ -20,7 +30,9 @@ export default class DeckDetail extends Component {
 	}
 
 	playQuiz = () => {
-		this.props.navigation.navigate('AddCard',{title: deckTitle, questions: deckQuestions});
+		const deckTitle = this.props.navigation.state.params.deckDetail.title;
+		getDeck(deckTitle)
+			.then((deck) => {this.props.navigation.navigate('QuizPage', {deck})})
 	}
 
 	render(){
@@ -37,9 +49,11 @@ export default class DeckDetail extends Component {
 					</TouchableOpacity>
 				</View>
 				<View style={{flex:1}}>
+				{ cardsCount > 0 && (
 					<TouchableOpacity onPress={() => {this.playQuiz()}}>
 						<Text>Play Quiz</Text>
 					</TouchableOpacity>
+				)}
 				</View>
 			</View>
 		)

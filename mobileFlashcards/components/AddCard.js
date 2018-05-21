@@ -6,7 +6,6 @@ export default class AddCard extends Component {
 	state = {
 		question: '',
 		answer: '',
-		deck: {}
 	}
 
 	addCard = () => {
@@ -19,7 +18,7 @@ export default class AddCard extends Component {
 		addCardToDeck(title, card)
 		console.log('This Props - ADD CARD', this.props)
 
-		this.props.navigation.navigate('DeckDetail', { title: title })
+		this.props.navigation.navigate('DeckDetail')
 	}
 
 	render(){
@@ -30,7 +29,7 @@ export default class AddCard extends Component {
 				<TextInput style={{height: 40, borderColor: 'gray', borderWidth: 1}} onChangeText={(question) => this.setState({ question })} value={this.state.question} />
 				<Text>Answer</Text>
 				<TextInput style={{height: 40, borderColor: 'gray', borderWidth: 1}} onChangeText={(answer) => this.setState({ answer })} value={this.state.answer} />
-			    <TouchableOpacity onPress={() => {this.addCard(), console.log('BOOM')}} style={styles.button}>
+			    <TouchableOpacity onPress={() => {this.addCard()}} style={styles.button}>
 			    	<Text style={{color: 'black'}}>ADD NEW CARD</Text>
 			    </TouchableOpacity>
 			</View>
