@@ -15,10 +15,9 @@ export default class DeckList extends Component {
 			     console.log("Api call error DeckList");
 			     alert(error.message);
 			  });
-
-
 	}
-	componentWillUpdate(){
+	componentDidUpdate(){
+		// console.log('UPDAAATEEEE!!!!!')
 		getDecks()
 			.then((decks) => this.setState({decks}))
 			.catch((error)=>{

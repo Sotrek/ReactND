@@ -62,11 +62,11 @@ export default class QuizPage extends Component {
     console.log('CARDDDd', card)
     console.log('the state', this.state)
     return (
-      <View style={{ flex: 1}}>
+      <View style={styles.container}>
         { !this.state.complete ? (
           <View style={{ flex: 1, justifyContent: 'flex-start'}}>
             <View>
-              <Text>Question {this.state.current+1} of {this.state.count} </Text>
+              <Text>{this.state.current+1} / {this.state.count} </Text>
             </View>
 
             <View>
@@ -79,7 +79,7 @@ export default class QuizPage extends Component {
 
             <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
                 <TouchableHighlight underlayColor='transparent' onPress={() => this.nextQuestion()}>
-                  <Feather name='x' size={30}/>
+                  <Text>INCORRECT</Text>
                 </TouchableHighlight>
                 <TouchableHighlight underlayColor='transparent' onPress={() => this.toggleAnswer()}>
                   { this.state.answer ? (
@@ -89,7 +89,7 @@ export default class QuizPage extends Component {
                   )}
                 </TouchableHighlight>
                 <TouchableHighlight underlayColor='transparent' onPress={() => this.correctAnswer()}>
-                  <Feather name='check' size={30}/>
+                  <Text>CORRECT</Text>
                 </TouchableHighlight>
             </View>
 
@@ -115,3 +115,12 @@ export default class QuizPage extends Component {
   }
 }
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingTop:30,
+    alignItems: 'center',
+  },
+
+})

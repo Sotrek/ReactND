@@ -15,16 +15,16 @@ export default class AddCard extends Component {
 		}
 		const title = this.props.navigation.state.params.title
 
-		addCardToDeck(title, card)
-		// console.log('This Props - ADD CARD', this.props)
-
-		this.props.navigation.navigate('DeckDetail', {title: title})
+		addCardToDeck(title, card, ()=> {
+			getDeck(title)
+				.then((deckDetail) => (this.props.navigation.navigate('DeckDetail', {deckDetail})))
+		})
 	}
 
 	render(){
 		return (
-			<View style={{flex:1}}>
-				<Text>Add a new Card to this deck</Text>
+			<View style={styles.container}>
+				<Text style={{marginBottom:10}}>Add a new Card to this deck</Text>
 				<Text>Question</Text>
 				<TextInput style={{height: 40, borderColor: 'gray', borderWidth: 1}} onChangeText={(question) => this.setState({ question })} value={this.state.question} />
 				<Text>Answer</Text>
@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#DDDDDD',
     height:40,
-    padding: 10
+    padding: 10,
+    marginTop: 20
   }
 })

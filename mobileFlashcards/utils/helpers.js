@@ -23,7 +23,7 @@ export function storeDeckTitle(title) {
   AsyncStorage.mergeItem(FLASHCARDS_STORAGE_KEY, JSON.stringify({[title]:deck}))
 }
 
-export function addCardToDeck(title, card) {
+export function addCardToDeck(title, card, callback) {
   // console.log("add card", title, card.question, card.answer);
 	AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY).then(result => {
 	  const data = JSON.parse(result);
@@ -40,5 +40,7 @@ export function addCardToDeck(title, card) {
 	  AsyncStorage.mergeItem(FLASHCARDS_STORAGE_KEY, JSON.stringify({
 	   [title]: newEntry
 	  }));
+
+	  callback();
 	});
 }

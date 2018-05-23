@@ -1,21 +1,27 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity} from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { getDeck, getDecks } from '../utils/helpers'
-
+import { black, gray } from '../utils/colors'
 
 export default class DeckDetail extends Component {
-	componentDidMount(){
-		// console.log('PROPS IN DECK DETAIL', this.props)
-		// const deckTitle = this.props.navigation.state.params.deckDetail.title;
-		getDecks()
-			.then((deck)=> (console.log('getDecks -- did mount', JSON.stringify(deck))))
-	}
-	componentWillUpdate(){
-		console.log('there was an update')
-		const deckTitle = this.props.navigation.state.params.deckDetail.title;
-		getDecks()
-			.then((deck)=> (console.log('getDecks -- update', JSON.stringify(deck))))
-	}
+
+	// state = {
+	// 	deck:{}
+	// }
+	// componentDidMount(){
+	// 	const deckTitle = this.props.navigation.state.params.deckDetail.title;
+	// 	getDeck(deckTitle)
+	// 		.then((deck)=> this.setState({deck}))
+	// }
+	// componentWillReceiveProps(){
+	// 	const deckTitle = this.props.navigation.state.params.deckDetail.title;
+	// 	getDeck(deckTitle)
+	// 		.then((deck)=> this.setState({deck}))
+	// 	// console.log('this.state.deck', this.state.deck)
+	// 	// console.log(this.props.navigation.state.params.deckDetail.questions)
+
+
+	// }
 
 	addCard = () => {
 		const deckTitle = this.props.navigation.state.params.deckDetail.title;
@@ -30,21 +36,21 @@ export default class DeckDetail extends Component {
 	}
 
 	render(){
+		console.log('render- props.nav.state.params', this.props.navigation.state.params )
 		const deckTitle = this.props.navigation.state.params.deckDetail.title;
-		const cardsCount  = this.props.navigation.state.params.deckDetail.questions ? this.props.navigation.state.params.deckDetail.questions.length : 0;
+		const cardsCount  = this.props.navigation.state.params.deckDetail.questions.length;
 
 		return (
-			<View style={{flex:1}}>
-				<Text>{deckTitle}</Text>
-				<Text>{cardsCount}</Text>
-				<View style={{flex:1}}>
-					<TouchableOpacity onPress={() => {this.addCard()}}>
+			<View style={styles.container}>
+				<Text style={styles.deckTitle}>{deckTitle}</Text>
+				<Text>Cards Count ({cardsCount})</Text>
+				<View style={styles.container}>
+					<TouchableOpacity onPress={() => {this.addCard()}} style={styles.cardButton}>
 						<Text>Add Card</Text>
 					</TouchableOpacity>
-				</View>
-				<View style={{flex:1}}>
+
 				{ cardsCount > 0 && (
-					<TouchableOpacity onPress={() => {this.playQuiz()}}>
+					<TouchableOpacity onPress={() => {this.playQuiz()}} style={styles.cardButton}>
 						<Text>Play Quiz</Text>
 					</TouchableOpacity>
 				)}
@@ -53,3 +59,27 @@ export default class DeckDetail extends Component {
 		)
 	}
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingTop:30,
+    alignItems: 'center',
+  },
+  deckTitle: {
+  	color: black,
+  	marginBottom: 10
+  },
+  cardsCount: {
+  	color: gray,
+  },
+  cardButton: {
+  	paddingVertical: 10,
+  	paddingHorizontal: 30,
+  	borderWidth :2,
+    borderColor: black,
+    marginBottom: 10
+  }
+
+})
