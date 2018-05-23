@@ -17,7 +17,6 @@ export default class DeckList extends Component {
 			  });
 	}
 	componentDidUpdate(){
-		// console.log('UPDAAATEEEE!!!!!')
 		getDecks()
 			.then((decks) => this.setState({decks}))
 			.catch((error)=>{

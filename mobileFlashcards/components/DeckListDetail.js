@@ -4,14 +4,10 @@ import { getDeck } from '../utils/helpers'
 import { white, black, gray } from '../utils/colors'
 
 export default class DeckListDetail extends Component {
-  componentDidMount(){
-    // console.log('THIS DOT PROPS - DECKLISTDETAIL',this.props)
-  }
 
-  goToDetail = () => {
+  goToDetail(){
     const { deck } = this.props
     this.props.navigation.navigate('DeckDetail', {deckDetail: deck})
-    // console.log('DAK',{deck})
   }
 
 	render(){

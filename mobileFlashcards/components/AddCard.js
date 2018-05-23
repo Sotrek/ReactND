@@ -8,7 +8,7 @@ export default class AddCard extends Component {
 		answer: '',
 	}
 
-	addCard = () => {
+	addCard(){
 		let card = {
 			question: this.state.question,
 			answer: this.state.answer
@@ -20,6 +20,10 @@ export default class AddCard extends Component {
 				.then((deckDetail) => (this.props.navigation.navigate('DeckDetail', {deckDetail})))
 		})
 	}
+
+	static navigationOptions = {
+    	title: 'Add Card',
+  	};
 
 	render(){
 		return (
